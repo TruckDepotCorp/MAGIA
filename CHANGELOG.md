@@ -61,6 +61,10 @@ Este proyecto usa versionado semántico (ver `docs/03-gobernanza-repositorio.md`
   vía proveedor SaaS externo de RRHH, distinto de PII de clientes
   (`example-external-integration.md`) o features de IA en el producto
   (`example-ai-features.md`).
+- `docs/10-resumen-ejecutivo-gerencia.md`: resumen no técnico para
+  Gerencia — qué problema resuelve MAGIA, qué se descubrió y qué cambió al
+  instalarlo en un proyecto real (generalizado, sin nombrar el proyecto),
+  y el potencial de escalarlo a toda la empresa.
 
 ### Pendiente
 - Spike técnico con métricas reales de latencia/costo (Sprint 2) —

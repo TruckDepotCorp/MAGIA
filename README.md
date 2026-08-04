@@ -33,6 +33,9 @@ en sus propios repos.
     de testing/evals y pipeline CI/CD de referencia (Sprint 3).
 11. **`docs/09-catalogo-capacidades.md`** — matriz tarea → modelo/
     herramienta → riesgo → costo relativo (Sprint 3).
+12. **`docs/10-resumen-ejecutivo-gerencia.md`** — resumen para Gerencia:
+    qué impacto y potencial tiene MAGIA, sin detalle técnico ni nombres de
+    proyecto.
 
 ## Estructura
 
