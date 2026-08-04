@@ -64,10 +64,14 @@ Este proyecto usa versionado semántico (ver `docs/03-gobernanza-repositorio.md`
 - `docs/10-resumen-ejecutivo-gerencia.md`: resumen no técnico para
   Gerencia — qué problema resuelve MAGIA, qué se descubrió y qué cambió al
   instalarlo en un proyecto real (generalizado, sin nombrar el proyecto),
-  y el potencial de escalarlo a toda la empresa. Reescrito con tono más
-  contundente (tabla sin-MAGIA/con-MAGIA, marco de "riesgo invisible",
-  ventaja competitiva) a pedido explícito — sin agregar métricas
-  inventadas, solo reforzando el hallazgo real ya documentado.
+  y el potencial de escalarlo a toda la empresa. Reescrito dos veces a
+  pedido explícito: primero con tono más contundente (tabla
+  sin-MAGIA/con-MAGIA, marco de "riesgo invisible"), luego con nuevo
+  título y 3 secciones nuevas — Desempeño (gobernar acelera, no frena),
+  Calidad de producto (la gobernanza también sube el piso de calidad), y
+  Nivel de gobernanza (posiciona a la empresa en el camino de madurez de
+  las organizaciones líderes en IA). Sin métricas inventadas — se
+  refuerza el mismo hallazgo real ya documentado.
 
 ### Pendiente
 - Spike técnico con métricas reales de latencia/costo (Sprint 2) —
