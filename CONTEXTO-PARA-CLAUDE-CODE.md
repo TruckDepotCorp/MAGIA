@@ -132,12 +132,22 @@ Deuda técnica registrada, sin bloquear tampoco:
 - Crear la ficha de diligencia (Sprint 3) y aplicarla retroactivamente a
   WMS e HIPERSAP por estar en Medio/Alto.
 
-**Próximo paso: Sprint 2 — Semanas 3-4, Arquitectura de referencia** (ver
-`docs/01-plan-tecnico-fase1.md`) — catálogo de patrones de integración,
-selección de 2-3 patrones prioritarios cruzados contra el inventario real
-(WMS/HIPERSAP), spike técnico por patrón, y convenciones de versionado de
-prompts/logging. El stack ya conocido (.NET/C#, GitHub Actions, Azure) debe
-enmarcar estos spikes, no un ejemplo genérico.
+**Sprint 2 y 3 avanzados en paralelo (2026-08-04):**
+- Sprint 2 → `docs/07-arquitectura-referencia.md`: estándar de patrones de
+  integración (Copiloto embebido, Agente con herramientas/MCP, RAG
+  priorizados), estándar de MCP, convenciones de prompts/logging.
+- Sprint 3 → `docs/08-estandares-desarrollo.md` (guía de prompting,
+  testing/evals, pipeline CI) y `docs/09-catalogo-capacidades.md` (matriz
+  tarea→modelo→riesgo→costo). Plantillas en `templates/` (ficha de caso de
+  uso, PR, pipeline CI de referencia).
+- **Importante:** el plan técnico marca que el Sprint 3 depende de
+  patrones *validados con spike* en el Sprint 2 — el spike sigue
+  pendiente (no hay todavía un caso de uso de producto real), así que
+  Sprint 3 se construyó sobre patrones **propuestos**, no validados. Se
+  revisa en cuanto el spike se ejecute.
+- Deuda pendiente compartida: spike técnico (Sprint 2), framework de evals
+  + golden dataset real + pipeline CI validado contra un repo real
+  (Sprint 3), skill `ficha-caso-de-uso` (Sprint 4).
 
 **Nota de calendario (2026-08-04):** el Sprint 1 se cerró el mismo día que
 el calendario alcanzó la semana 4 (inicio del Sprint 2 según

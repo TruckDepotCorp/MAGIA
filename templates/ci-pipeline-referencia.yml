@@ -1,0 +1,55 @@
+# Pipeline CI de referencia — Sprint 3 (docs/01-plan-tecnico-fase1.md)
+#
+# Plantilla de GitHub Actions para repos con features de IA (coherente con
+# docs/06-stack-tecnico.md: GitHub + GitHub Actions ya es el CI/CD real de
+# la empresa). Copiar a .github/workflows/ en el repo que la adopte y
+# adaptar los pasos marcados con [ADAPTAR].
+#
+# Pendiente explícito (ver docs/08-estandares-desarrollo.md): esta
+# plantilla no se ha corrido todavía punta a punta contra un golden
+# dataset real — eso requiere el primer caso de uso real de producto.
+# Se entrega como estructura de referencia, no como pipeline validado.
+
+name: ai-governance-checks
+
+on:
+  pull_request:
+    paths:
+      - "**/ai/prompts/**"
+      - "**/ai-features/**"
+
+jobs:
+  lint-prompts:
+    name: Lint de prompts
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      # [ADAPTAR] Reemplazar por el linter real de prompts del repo:
+      # formato esperado, longitud máxima, variables requeridas presentes.
+      - name: Lint de formato y variables de prompts
+        run: echo "TODO - [ADAPTAR] correr el linter de prompts del repo"
+
+  security-gate:
+    name: Gate de seguridad (secretos / PII)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      # [ADAPTAR] Bloquear el merge si se detectan credenciales, tokens o
+      # datos reales de clientes en prompts/fixtures versionados. Puede
+      # apoyarse en un scanner de secretos existente (ej. gitleaks) más
+      # una revisión de patrones de PII propia del dominio.
+      - name: Escanear credenciales y PII en prompts/fixtures
+        run: echo "TODO - [ADAPTAR] correr el scanner de secretos/PII"
+
+  evals:
+    name: Evals contra golden dataset
+    runs-on: ubuntu-latest
+    needs: [lint-prompts, security-gate]
+    steps:
+      - uses: actions/checkout@v4
+      # [ADAPTAR] Correr el golden dataset de evals del repo (ver
+      # rules/example-ai-features.md) y fallar el build si hay regresión.
+      # No existe todavía un golden dataset real en ningún repo — este
+      # paso queda como placeholder hasta el primer caso de uso real.
+      - name: Correr evals
+        run: echo "TODO - [ADAPTAR] correr el golden dataset de evals"

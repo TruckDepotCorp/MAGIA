@@ -3,21 +3,38 @@
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 Este proyecto usa versionado semántico (ver `docs/03-gobernanza-repositorio.md`).
 
-## [Unreleased] - Sprint 2 (Arquitectura de referencia) en curso
+## [Unreleased] - Sprint 2 + Sprint 3 en curso
 
 ### Agregado
 - `docs/07-arquitectura-referencia.md`: estándar de MAGIA para integrar IA
   dentro de productos propios. Catálogo de 5 patrones; prioriza Copiloto
-  embebido, Agente con herramientas/MCP y RAG como los 3 primeros que
-  cubrirá el catálogo de capacidades del Sprint 3. Define el estándar de
+  embebido, Agente con herramientas/MCP y RAG. Define el estándar de
   MCP/conectores internos (owner, permisos, confirmación humana en
   escritura irreversible, clasificación de riesgo previa), y las
   convenciones de versionado de prompts y logging/observabilidad con
   enmascarado de PII. Incluye diagramas de referencia por patrón.
+- `docs/08-estandares-desarrollo.md`: guía de prompting (Producto/Proceso/
+  Desempeño del 4D adaptado a generación de código, revisión de PRs,
+  generación de tests), estándar de testing/evals, y referencia al
+  pipeline CI/CD.
+- `docs/09-catalogo-capacidades.md`: matriz tarea → modelo/herramienta →
+  patrón → riesgo típico → costo relativo, usando los 4 proveedores
+  aprobados.
+- Carpeta `templates/` nueva: `ficha-caso-de-uso.md`, `pr-template-ia.md`,
+  `ci-pipeline-referencia.yml` (GitHub Actions, coherente con el CI/CD
+  real de la empresa).
+- `skills/elegir-patron-ia/SKILL.md` actualizada para apuntar a los
+  documentos reales (ya no dice "pendiente de completar en el Sprint 3").
 
 ### Pendiente
-- Spike técnico con métricas reales de latencia/costo — requiere un caso
-  de uso de producto real; ningún proyecto lo tiene todavía.
+- Spike técnico con métricas reales de latencia/costo (Sprint 2) —
+  requiere un caso de uso de producto real; ningún proyecto lo tiene
+  todavía.
+- Elegir/construir el framework de evals concreto y generar el primer
+  golden dataset real (Sprint 3).
+- Ejecutar `templates/ci-pipeline-referencia.yml` contra un repo real.
+- Crear la skill `ficha-caso-de-uso` (Sprint 4) que automatice
+  `templates/ficha-caso-de-uso.md`.
 
 ## [0.2.0] - Cierre Sprint 1 (Diagnóstico y Gobernanza) - 2026-08-04
 

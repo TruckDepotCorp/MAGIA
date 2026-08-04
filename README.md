@@ -29,6 +29,10 @@ en sus propios repos.
 9. **`docs/07-arquitectura-referencia.md`** — estándar de MAGIA para
    integrar IA en productos propios (Sprint 2): patrones priorizados,
    estándar de MCP, versionado de prompts, logging/PII.
+10. **`docs/08-estandares-desarrollo.md`** — guía de prompting, estándar
+    de testing/evals y pipeline CI/CD de referencia (Sprint 3).
+11. **`docs/09-catalogo-capacidades.md`** — matriz tarea → modelo/
+    herramienta → riesgo → costo relativo (Sprint 3).
 
 ## Estructura
 
@@ -41,15 +45,19 @@ magia-framework/
 ├── docs/
 ├── claude-md/base.md
 ├── rules/
-└── skills/
+├── skills/
+└── templates/
 ```
 
 ## Estado actual
 
-Versión `0.2.0` — Sprint 1 (semanas 1-2) cerrado el 2026-08-04, con un
-pendiente en la capa de valor (paralela, no bloqueante — ver
-`docs/02-valor-y-adopcion.md`). Sprint 2 (Arquitectura de referencia) en
-curso. Ver `CHANGELOG.md` para el detalle de cambios.
+Versión `0.2.0` — Sprint 1 cerrado el 2026-08-04, con un pendiente en la
+capa de valor (paralela, no bloqueante — ver
+`docs/02-valor-y-adopcion.md`). Sprint 2 (Arquitectura de referencia) y
+Sprint 3 (Estándares de desarrollo y catálogo de capacidades) avanzados en
+paralelo — el spike técnico y el pipeline CI validado contra un repo real
+siguen pendientes hasta que exista un primer caso de uso de producto. Ver
+`CHANGELOG.md` para el detalle de cambios.
 
 ## Cómo adoptar MAGIA en un repo de producto
 

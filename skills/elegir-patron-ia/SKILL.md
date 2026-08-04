@@ -11,7 +11,8 @@ version: "0.1.0"
 
 Al iniciar cualquier caso de uso nuevo que involucre IA, antes de escribir
 código — para decidir el patrón correcto según la matriz de MAGIA
-(`magia-framework/docs/01-plan-tecnico-fase1.md`, Sprint 2 y 3).
+(`magia-framework/docs/07-arquitectura-referencia.md` y
+`docs/09-catalogo-capacidades.md`).
 
 ## Proceso
 
@@ -19,12 +20,12 @@ código — para decidir el patrón correcto según la matriz de MAGIA
    simple, generación de código, análisis largo sobre documentos propios,
    acción autónoma multi-paso, chat conversacional con contexto de sesión).
 2. Cruzar contra la matriz de decisión del catálogo de capacidades
-   (`magia-framework/docs/` — pendiente de completar en el Sprint 3 con
-   datos reales de la empresa).
-3. Verificar el nivel de riesgo del caso de uso (ver matriz de riesgo,
-   `docs/00-plan-metodologico-4D.md`). Si es medio/alto, exigir que se
-   complete la ficha de caso de uso (`skills/ficha-caso-de-uso`, pendiente
-   de crear) antes de continuar.
+   (`magia-framework/docs/09-catalogo-capacidades.md`).
+3. Verificar el nivel de riesgo del caso de uso con la rúbrica de
+   `magia-framework/docs/05-matriz-riesgo.md`. Si es medio/alto, exigir que
+   se complete `templates/ficha-caso-de-uso.md` (la skill que la automatiza,
+   `skills/ficha-caso-de-uso`, es un entregable del Sprint 4) antes de
+   continuar.
 4. Proponer el patrón recomendado con una justificación breve (no solo el
    nombre del patrón) y las alternativas descartadas y por qué.
 5. Si el caso de uso no encaja claramente en ningún patrón del catálogo,
