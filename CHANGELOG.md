@@ -3,6 +3,22 @@
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 Este proyecto usa versionado semántico (ver `docs/03-gobernanza-repositorio.md`).
 
+## [Unreleased] - Sprint 2 (Arquitectura de referencia) en curso
+
+### Agregado
+- `docs/07-arquitectura-referencia.md`: estándar de MAGIA para integrar IA
+  dentro de productos propios. Catálogo de 5 patrones; prioriza Copiloto
+  embebido, Agente con herramientas/MCP y RAG como los 3 primeros que
+  cubrirá el catálogo de capacidades del Sprint 3. Define el estándar de
+  MCP/conectores internos (owner, permisos, confirmación humana en
+  escritura irreversible, clasificación de riesgo previa), y las
+  convenciones de versionado de prompts y logging/observabilidad con
+  enmascarado de PII. Incluye diagramas de referencia por patrón.
+
+### Pendiente
+- Spike técnico con métricas reales de latencia/costo — requiere un caso
+  de uso de producto real; ningún proyecto lo tiene todavía.
+
 ## [0.2.0] - Cierre Sprint 1 (Diagnóstico y Gobernanza) - 2026-08-04
 
 ### Agregado
