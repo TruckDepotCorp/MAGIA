@@ -205,8 +205,9 @@ igual de genérico?
 - **Despliegue (compuerta final antes de publicar cada pilar):** verificar que
   los roles y niveles de riesgo sean reales y accionables, que no haya
   afirmaciones de "mejores prácticas" sin respaldo, y que el pilar tenga un
-  responsable humano nombrado. Responsable de la compuerta final: `[por
-  definir: quién en tu organización aprueba MAGIA v1.0]`.
+  responsable humano nombrado. Responsable de la compuerta final: comité de
+  gobernanza por consenso — José Alonso, Pablo Breganza, Josué Gamarro (ver
+  `docs/01-plan-tecnico-fase1.md`, sección de roles técnicos).
 
 ---
 

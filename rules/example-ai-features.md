@@ -1,6 +1,6 @@
 ---
 scope: "src/ai-features/**"
-owner: "[por definir]"
+owner: "José Alonso"
 version: "0.1.0"
 ---
 

@@ -84,17 +84,28 @@ técnicos:
 
 ## 6. Qué está pendiente (bloquea el cierre del Sprint 1)
 
-Estos son datos reales de la organización que aún no se han provisto —
-**pregúntalos antes de asumirlos**:
+Resuelto — 2026-08-04: comité de gobernanza y dueños de Skills/Rules ya
+tienen nombres reales (José Alonso, Pablo Breganza, Josué Gamarro; modelo de
+decisión por consenso). Ver `docs/01-plan-tecnico-fase1.md` (roles),
+`docs/03-gobernanza-repositorio.md` (dueños por artefacto) y
+`docs/00-plan-metodologico-4D.md` §4 (responsable de la compuerta final).
 
-- Nombres reales para el comité de gobernanza y los dueños de cada
-  Skill/Rule (hoy marcados como `[por definir]`).
+Sigue pendiente — datos reales de la organización que aún no se han
+provisto, **pregúntalos antes de asumirlos**:
+
 - Lista de proveedores/modelos de IA aprobados.
 - Inventario real de casos de uso de IA ya existentes en la empresa (auditoría
   técnica del Sprint 1).
+- Levantamiento de stack técnico real (lenguajes, frameworks, CI/CD, cloud).
 - Criterios de riesgo con ejemplos reales de la propia empresa (no genéricos).
 - Criterio de priorización de casos de uso por impacto de negocio (para la
   capa de valor).
+
+**Nota de calendario (2026-08-04):** por fecha de calendario el proyecto
+debería estar en la semana 4 (dentro del Sprint 2), pero el Sprint 1 seguía
+abierto — vamos avanzando sus bloqueadores uno por uno, en orden, sin saltar
+al Sprint 2 todavía (ver dependencias críticas en
+`docs/01-plan-tecnico-fase1.md`).
 
 ## 7. Cómo debe trabajar Claude Code en este proyecto
 

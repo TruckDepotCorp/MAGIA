@@ -64,4 +64,11 @@ Cada Skill y cada Rule debe tener un responsable humano nombrado (no solo
 "el comité" en general), registrado en el encabezado del propio archivo
 (`Owner:` en el front-matter o al inicio del documento).
 
-`[por definir: nombres reales de los dueños — ver docs/00-plan-metodologico-4D.md]`
+| Artefacto | Owner |
+|---|---|
+| `skills/elegir-patron-ia/SKILL.md` | José Alonso |
+| `rules/example-ai-features.md` | José Alonso |
+
+Comité de gobernanza (aprobación de cambios por consenso): José Alonso, Pablo
+Breganza, Josué Gamarro — ver `docs/01-plan-tecnico-fase1.md`, sección de
+roles técnicos.

@@ -1,7 +1,7 @@
 ---
 name: elegir-patron-ia
 description: "Usar esta skill cuando el equipo necesite decidir qué patrón de integración de IA aplicar a un caso de uso nuevo (prompting directo, RAG, agente con herramientas/MCP, copiloto embebido, orquestador multi-paso). Aplica la matriz de decisión del catálogo de capacidades de MAGIA. Disparar con frases como 'qué patrón de IA uso para X', 'cómo integro IA en esta feature', o al iniciar la ficha de un caso de uso nuevo."
-owner: "[por definir]"
+owner: "José Alonso"
 version: "0.1.0"
 ---
 

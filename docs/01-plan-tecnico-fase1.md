@@ -24,7 +24,21 @@ Ajusta el ritmo si tu punto de partida es distinto.
 | **Equipo de desarrollo piloto** | Usa y retroalimenta las primeras Skills/Rules en su repo real |
 | **Comité de gobernanza** (puede ser 2-3 de los roles anteriores) | Aprueba `CLAUDE.md`, matriz de riesgo y cada versión de MAGIA |
 
-`[por definir: nombres/personas reales para cada rol — sin esto, el sprint 1 no puede cerrarse formalmente]`
+### Personas reales asignadas a cada rol
+
+Equipo reducido con roles solapados — cada persona cubre más de un rol técnico:
+
+| Persona | Rol(es) técnico(s) |
+|---|---|
+| **José Alonso** | Arquitecto/a de IA (lead técnico), Ingeniero/a de plataforma / DevOps, Seguridad / Cumplimiento, Product owner / líder de equipo piloto |
+| **Pablo Breganza** | Arquitecto/a de IA (lead técnico), Ingeniero/a de plataforma / DevOps, Seguridad / Cumplimiento |
+| **Josué Gamarro** | Ingeniero/a de plataforma / DevOps, Seguridad / Cumplimiento, Product owner / líder de equipo piloto |
+
+**Comité de gobernanza:** los 3 (José Alonso, Pablo Breganza, Josué Gamarro) — comité completo, sin miembros adicionales pendientes.
+
+**Modelo de decisión:** consenso del comité. No hay un responsable único (Accountable) distinto por tipo de decisión (aprobar `CLAUDE.md`, aprobar un caso de uso nuevo, auditar) — las tres personas deciden juntas cada aprobación.
+
+`[por definir: rol/dueño de "Equipo de desarrollo piloto" — depende de qué repo se elija como piloto en el Sprint 4]`
 
 ---
 
