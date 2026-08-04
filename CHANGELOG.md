@@ -64,7 +64,10 @@ Este proyecto usa versionado semántico (ver `docs/03-gobernanza-repositorio.md`
 - `docs/10-resumen-ejecutivo-gerencia.md`: resumen no técnico para
   Gerencia — qué problema resuelve MAGIA, qué se descubrió y qué cambió al
   instalarlo en un proyecto real (generalizado, sin nombrar el proyecto),
-  y el potencial de escalarlo a toda la empresa.
+  y el potencial de escalarlo a toda la empresa. Reescrito con tono más
+  contundente (tabla sin-MAGIA/con-MAGIA, marco de "riesgo invisible",
+  ventaja competitiva) a pedido explícito — sin agregar métricas
+  inventadas, solo reforzando el hallazgo real ya documentado.
 
 ### Pendiente
 - Spike técnico con métricas reales de latencia/costo (Sprint 2) —
