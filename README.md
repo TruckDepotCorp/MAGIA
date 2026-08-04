@@ -43,8 +43,10 @@ magia-framework/
 
 ## Estado actual
 
-Versión `0.1.0` — esqueleto inicial. Sprint 1 (semanas 1-2) en curso.
-Ver `CHANGELOG.md` para el detalle de cambios.
+Versión `0.2.0` — Sprint 1 (semanas 1-2) cerrado el 2026-08-04, con un
+pendiente en la capa de valor (paralela, no bloqueante — ver
+`docs/02-valor-y-adopcion.md`). Sprint 2 (Arquitectura de referencia) en
+curso. Ver `CHANGELOG.md` para el detalle de cambios.
 
 ## Cómo adoptar MAGIA en un repo de producto
 

@@ -3,7 +3,7 @@
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 Este proyecto usa versionado semántico (ver `docs/03-gobernanza-repositorio.md`).
 
-## [Unreleased] - Avance Sprint 1 (diagnóstico y gobernanza)
+## [0.2.0] - Cierre Sprint 1 (Diagnóstico y Gobernanza) - 2026-08-04
 
 ### Agregado
 - Comité de gobernanza constituido con nombres reales: José Alonso, Pablo
@@ -48,15 +48,19 @@ Este proyecto usa versionado semántico (ver `docs/03-gobernanza-repositorio.md`
   (multi-repo), GitHub Actions, Azure como cloud aprobado, WMS e HIPERSAP
   en .NET/C#.
 
-### Pendiente (sigue bloqueando el cierre del Sprint 1)
+### Sprint 1 — cerrado 2026-08-04
+
+Cerrado con un pendiente que corre en paralelo y **no bloquea** el inicio
+del Sprint 2 (ver `docs/02-valor-y-adopcion.md`, corre en paralelo a los
+sprints técnicos, no es un pilar más):
+
 - Criterio de priorización de casos de uso por impacto de negocio (capa de
-  valor, `docs/02-valor-y-adopcion.md`).
-- Completar el inventario con cualquier otro repo/feature pendiente.
+  valor).
+
+### Deuda técnica registrada (seguimiento, no bloquea Sprint 2)
+- Completar el inventario si aparece otro repo/feature de IA no reportado.
 - Crear la ficha de diligencia (Sprint 3) y aplicarla retroactivamente a
   WMS e HIPERSAP por estar en Medio/Alto.
-- Levantamiento de stack técnico real.
-- Matriz de niveles de riesgo con ejemplos reales de la propia empresa.
-- Criterio de priorización de casos de uso por impacto de negocio.
 
 ## [0.1.0] - Esqueleto inicial
 

@@ -70,9 +70,22 @@ reglas base antes de construir nada.
 - Estructura de carpetas del repo `magia/` creada y accesible al equipo.
 
 ### Criterio de aceptación
-- [ ] El inventario cubre el 100% de los repos activos conocidos, no solo una muestra.
-- [ ] Cada nivel de riesgo tiene al menos un ejemplo real de la propia empresa (no genérico).
-- [ ] El comité de gobernanza tiene nombres, no solo roles.
+- [x] El inventario cubre el 100% de los repos activos conocidos reportados
+  a la fecha (WMS, HIPERSAP, `magia-framework` vía Claude Code) — ver
+  `docs/04-diagnostico-inventario-ia.md`. Se actualiza si aparece un repo
+  nuevo.
+- [x] Cada nivel de riesgo tiene al menos un ejemplo real de la propia
+  empresa (no genérico) — ver `docs/05-matriz-riesgo.md` (WMS = Medio,
+  HIPERSAP = Alto).
+- [x] El comité de gobernanza tiene nombres, no solo roles — José Alonso,
+  Pablo Breganza, Josué Gamarro (ver sección de roles arriba).
+
+### Sprint 1 — cerrado 2026-08-04
+
+Cerrado con un pendiente que corre en paralelo y no bloquea el Sprint 2: el
+criterio de priorización de casos de uso por impacto de negocio
+(`docs/02-valor-y-adopcion.md`), que pertenece a la capa de valor, no a
+este plan técnico. Ver `CHANGELOG.md` v0.2.0 para el detalle completo.
 
 ---
 

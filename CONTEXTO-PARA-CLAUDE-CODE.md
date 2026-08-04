@@ -82,7 +82,7 @@ técnicos:
   Request, aprobado por el comité de gobernanza.
 - Detalle completo: `docs/03-gobernanza-repositorio.md`.
 
-## 6. Qué está pendiente (bloquea el cierre del Sprint 1)
+## 6. Sprint 1 — cerrado (2026-08-04)
 
 Resuelto — 2026-08-04: comité de gobernanza y dueños de Skills/Rules ya
 tienen nombres reales (José Alonso, Pablo Breganza, Josué Gamarro; modelo de
@@ -118,18 +118,31 @@ Resuelto — 2026-08-04: levantamiento de stack técnico en
 `docs/06-stack-tecnico.md`. GitHub (multi-repo), GitHub Actions, Azure como
 cloud aprobado. WMS e HIPERSAP corren en .NET/C#.
 
-Sigue pendiente — datos reales de la organización que aún no se han
-provisto, **pregúntalos antes de asumirlos**:
+**Sprint 1 cerrado formalmente el 2026-08-04** (ver `CHANGELOG.md` v0.2.0 y
+criterio de aceptación marcado en `docs/01-plan-tecnico-fase1.md`), con un
+pendiente que se dejó deliberadamente abierto porque corre en paralelo y no
+bloquea el Sprint 2:
 
-- Criterio de priorización de casos de uso por impacto de negocio (para la
-  capa de valor) — este es el único bloqueador que le falta al cierre
-  formal del Sprint 1.
+- Criterio de priorización de casos de uso por impacto de negocio (capa de
+  valor, `docs/02-valor-y-adopcion.md` — no es un pilar técnico, corre en
+  paralelo a los sprints).
 
-**Nota de calendario (2026-08-04):** por fecha de calendario el proyecto
-debería estar en la semana 4 (dentro del Sprint 2), pero el Sprint 1 seguía
-abierto — vamos avanzando sus bloqueadores uno por uno, en orden, sin saltar
-al Sprint 2 todavía (ver dependencias críticas en
-`docs/01-plan-tecnico-fase1.md`).
+Deuda técnica registrada, sin bloquear tampoco:
+- Completar el inventario si aparece otro repo/feature de IA no reportado.
+- Crear la ficha de diligencia (Sprint 3) y aplicarla retroactivamente a
+  WMS e HIPERSAP por estar en Medio/Alto.
+
+**Próximo paso: Sprint 2 — Semanas 3-4, Arquitectura de referencia** (ver
+`docs/01-plan-tecnico-fase1.md`) — catálogo de patrones de integración,
+selección de 2-3 patrones prioritarios cruzados contra el inventario real
+(WMS/HIPERSAP), spike técnico por patrón, y convenciones de versionado de
+prompts/logging. El stack ya conocido (.NET/C#, GitHub Actions, Azure) debe
+enmarcar estos spikes, no un ejemplo genérico.
+
+**Nota de calendario (2026-08-04):** el Sprint 1 se cerró el mismo día que
+el calendario alcanzó la semana 4 (inicio del Sprint 2 según
+`docs/01-plan-tecnico-fase1.md`) — quedamos sincronizados con el plan de 10
+semanas, sin haber saltado ninguna dependencia entre sprints.
 
 ## 7. Cómo debe trabajar Claude Code en este proyecto
 
