@@ -19,6 +19,12 @@
   necesita un proveedor fuera de esta lista, escalar al comité de
   gobernanza antes de usarlo (ver `magia-framework/docs/01-plan-tecnico-fase1.md`,
   sección de roles).
+- Esta regla aplica al **modelo invocado por debajo**, no solo al nombre de
+  la herramienta: herramientas multi-modelo (ej. Cursor) pueden invocar
+  proveedores no aprobados según cómo se configuren, así que deben
+  restringirse a modelos de la lista de aprobados — usar la herramienta no
+  exime de la regla (ver hallazgo real en
+  `magia-framework/docs/04-diagnostico-inventario-ia.md`).
 - Nunca incluir secretos, credenciales, tokens ni datos de clientes reales
   en prompts, fixtures de prueba, o archivos de configuración versionados.
 - Todo caso de uso clasificado como **riesgo medio o alto** (ver matriz de

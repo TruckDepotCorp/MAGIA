@@ -23,9 +23,20 @@ Este proyecto usa versionado semántico (ver `docs/03-gobernanza-repositorio.md`
 - Registrado que ChatGPT y Grok están en evaluación/prueba (sin aprobación
   de producción); detalle completo queda pendiente para el inventario de
   casos de uso.
+- `docs/04-diagnostico-inventario-ia.md`: inventario técnico de casos de uso
+  de IA (Sprint 1). Registra Claude Code (este repo) y Cursor probado en
+  WMS e HIPERSAP con Composer 2.5 fast, Grok 4.5 high fast, Opus 5, Sonnet 5
+  y GPT-5.6. Incluye hallazgo abierto: ambos repos ya tocaron PII con
+  proveedores no aprobados, pendiente de clasificación de riesgo por el
+  comité.
+- Regla global de `claude-md/base.md` ampliada: la lista de aprobados aplica
+  al modelo invocado por debajo, no solo al nombre de la herramienta
+  (relevante para herramientas multi-modelo como Cursor).
 
 ### Pendiente (sigue bloqueando el cierre del Sprint 1)
-- Auditoría técnica real de casos de uso de IA existentes en la empresa.
+- Que el comité clasifique el riesgo de WMS e HIPERSAP y decida sobre
+  Cursor como herramienta aprobada.
+- Completar el inventario con cualquier otro repo/feature pendiente.
 - Levantamiento de stack técnico real.
 - Matriz de niveles de riesgo con ejemplos reales de la propia empresa.
 - Criterio de priorización de casos de uso por impacto de negocio.
