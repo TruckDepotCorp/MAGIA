@@ -26,6 +26,9 @@ en sus propios repos.
    con WMS e HIPERSAP como primeros ejemplos reales clasificados.
 8. **`docs/06-stack-tecnico.md`** — levantamiento de stack técnico
    (Sprint 1): GitHub, multi-repo, GitHub Actions, Azure, .NET/C#.
+9. **`docs/07-arquitectura-referencia.md`** — estándar de MAGIA para
+   integrar IA en productos propios (Sprint 2): patrones priorizados,
+   estándar de MCP, versionado de prompts, logging/PII.
 
 ## Estructura
 
