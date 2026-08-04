@@ -11,8 +11,12 @@
 ## Reglas globales de gobernanza (no negociables)
 
 - Nunca usar un modelo o proveedor de IA que no esté en la lista de
-  aprobados: **Anthropic (Claude Code)**. Ningún otro proveedor/modelo está
-  aprobado por ahora — si un caso de uso lo requiere, escalar al comité de
+  aprobados: **Anthropic (Claude Code)** es el único proveedor/modelo
+  **aprobado para uso en desarrollo**. ChatGPT y Grok están **en evaluación/
+  prueba** — no tienen aprobación de producción; mientras estén en esta
+  fase, no usarlos con datos reales de clientes ni PII, y registrar cualquier
+  prueba en el inventario de casos de uso (Sprint 1). Si un caso de uso
+  necesita un proveedor fuera de esta lista, escalar al comité de
   gobernanza antes de usarlo (ver `magia-framework/docs/01-plan-tecnico-fase1.md`,
   sección de roles).
 - Nunca incluir secretos, credenciales, tokens ni datos de clientes reales

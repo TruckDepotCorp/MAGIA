@@ -51,8 +51,11 @@ puede construir en paralelo:
 - ¿Qué tolerancia a error existe por tipo de caso de uso (un chatbot interno
   no es lo mismo que un sistema que decide algo sobre un cliente)?
 - ¿Qué infraestructura y proveedores de IA ya están aprobados o en uso hoy?
-  → **Respondido:** Anthropic, vía Claude Code — único proveedor/modelo
-  aprobado por ahora (ver `claude-md/base.md`).
+  → **Respondido:** Anthropic (Claude Code) es el único **aprobado** para
+  desarrollo. ChatGPT y Grok están **en evaluación/prueba**, sin aprobación
+  de producción todavía (ver `claude-md/base.md`) — quedan pendientes de
+  registrar en el inventario de casos de uso del Sprint 1 (qué feature/repo,
+  qué dato procesan, si tocan PII).
 - ¿Cuál es el criterio de éxito de MAGIA en 6 meses? (adopción, tiempo de
   entrega, incidentes evitados, número de herramientas estandarizadas, etc.)
 

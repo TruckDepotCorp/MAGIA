@@ -90,9 +90,13 @@ decisión por consenso). Ver `docs/01-plan-tecnico-fase1.md` (roles),
 `docs/03-gobernanza-repositorio.md` (dueños por artefacto) y
 `docs/00-plan-metodologico-4D.md` §4 (responsable de la compuerta final).
 
-Resuelto — 2026-08-04: proveedor/modelo de IA aprobado = **Anthropic (Claude
-Code)**, único por ahora. Ver `claude-md/base.md` (regla global) y
-`docs/00-plan-metodologico-4D.md` §1.
+Resuelto — 2026-08-04: proveedor/modelo de IA **aprobado** = **Anthropic
+(Claude Code)**, único para desarrollo. **En evaluación/prueba** (sin
+aprobación de producción): ChatGPT y Grok — no usar con datos reales de
+clientes ni PII mientras estén en esta fase. Ver `claude-md/base.md` (regla
+global) y `docs/00-plan-metodologico-4D.md` §1. Pendiente: registrar el
+detalle de estas pruebas (qué repo/feature, qué dato, PII sí/no) en el
+inventario de casos de uso.
 
 Sigue pendiente — datos reales de la organización que aún no se han
 provisto, **pregúntalos antes de asumirlos**:

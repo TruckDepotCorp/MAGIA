@@ -19,7 +19,10 @@ Este proyecto usa versionado semántico (ver `docs/03-gobernanza-repositorio.md`
 - Repo inicializado en git, primer commit (`chore: esqueleto inicial de
   MAGIA v0.1.0`).
 - Proveedor/modelo de IA aprobado definido: Anthropic (Claude Code), único
-  por ahora. Regla global agregada a `claude-md/base.md`.
+  para desarrollo. Regla global agregada a `claude-md/base.md`.
+- Registrado que ChatGPT y Grok están en evaluación/prueba (sin aprobación
+  de producción); detalle completo queda pendiente para el inventario de
+  casos de uso.
 
 ### Pendiente (sigue bloqueando el cierre del Sprint 1)
 - Auditoría técnica real de casos de uso de IA existentes en la empresa.
