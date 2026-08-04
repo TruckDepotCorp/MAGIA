@@ -18,9 +18,10 @@ Este proyecto usa versionado semántico (ver `docs/03-gobernanza-repositorio.md`
   repositorio, distinta de la plantilla `claude-md/base.md`).
 - Repo inicializado en git, primer commit (`chore: esqueleto inicial de
   MAGIA v0.1.0`).
+- Proveedor/modelo de IA aprobado definido: Anthropic (Claude Code), único
+  por ahora. Regla global agregada a `claude-md/base.md`.
 
 ### Pendiente (sigue bloqueando el cierre del Sprint 1)
-- Lista de proveedores/modelos de IA aprobados.
 - Auditoría técnica real de casos de uso de IA existentes en la empresa.
 - Levantamiento de stack técnico real.
 - Matriz de niveles de riesgo con ejemplos reales de la propia empresa.

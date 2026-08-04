@@ -90,10 +90,13 @@ decisión por consenso). Ver `docs/01-plan-tecnico-fase1.md` (roles),
 `docs/03-gobernanza-repositorio.md` (dueños por artefacto) y
 `docs/00-plan-metodologico-4D.md` §4 (responsable de la compuerta final).
 
+Resuelto — 2026-08-04: proveedor/modelo de IA aprobado = **Anthropic (Claude
+Code)**, único por ahora. Ver `claude-md/base.md` (regla global) y
+`docs/00-plan-metodologico-4D.md` §1.
+
 Sigue pendiente — datos reales de la organización que aún no se han
 provisto, **pregúntalos antes de asumirlos**:
 
-- Lista de proveedores/modelos de IA aprobados.
 - Inventario real de casos de uso de IA ya existentes en la empresa (auditoría
   técnica del Sprint 1).
 - Levantamiento de stack técnico real (lenguajes, frameworks, CI/CD, cloud).

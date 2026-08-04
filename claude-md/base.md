@@ -11,7 +11,10 @@
 ## Reglas globales de gobernanza (no negociables)
 
 - Nunca usar un modelo o proveedor de IA que no esté en la lista de
-  aprobados: `[por definir: lista de proveedores/modelos aprobados]`.
+  aprobados: **Anthropic (Claude Code)**. Ningún otro proveedor/modelo está
+  aprobado por ahora — si un caso de uso lo requiere, escalar al comité de
+  gobernanza antes de usarlo (ver `magia-framework/docs/01-plan-tecnico-fase1.md`,
+  sección de roles).
 - Nunca incluir secretos, credenciales, tokens ni datos de clientes reales
   en prompts, fixtures de prueba, o archivos de configuración versionados.
 - Todo caso de uso clasificado como **riesgo medio o alto** (ver matriz de
