@@ -114,12 +114,16 @@ criterios (PII, autonomía, exposición externa, reversibilidad) en
 **HIPERSAP = Alto** (por su exposición externa vía SAP B1), confirmado por
 el comité.
 
+Resuelto — 2026-08-04: levantamiento de stack técnico en
+`docs/06-stack-tecnico.md`. GitHub (multi-repo), GitHub Actions, Azure como
+cloud aprobado. WMS e HIPERSAP corren en .NET/C#.
+
 Sigue pendiente — datos reales de la organización que aún no se han
 provisto, **pregúntalos antes de asumirlos**:
 
-- Levantamiento de stack técnico real (lenguajes, frameworks, CI/CD, cloud).
 - Criterio de priorización de casos de uso por impacto de negocio (para la
-  capa de valor).
+  capa de valor) — este es el único bloqueador que le falta al cierre
+  formal del Sprint 1.
 
 **Nota de calendario (2026-08-04):** por fecha de calendario el proyecto
 debería estar en la semana 4 (dentro del Sprint 2), pero el Sprint 1 seguía

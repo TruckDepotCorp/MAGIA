@@ -24,6 +24,8 @@ en sus propios repos.
    uso de IA (Sprint 1).
 7. **`docs/05-matriz-riesgo.md`** — matriz de niveles de riesgo (Sprint 1),
    con WMS e HIPERSAP como primeros ejemplos reales clasificados.
+8. **`docs/06-stack-tecnico.md`** — levantamiento de stack técnico
+   (Sprint 1): GitHub, multi-repo, GitHub Actions, Azure, .NET/C#.
 
 ## Estructura
 

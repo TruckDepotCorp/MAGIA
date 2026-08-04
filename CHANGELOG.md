@@ -44,10 +44,13 @@ Este proyecto usa versionado semántico (ver `docs/03-gobernanza-repositorio.md`
   técnica de 4 criterios (PII, autonomía, exposición externa,
   reversibilidad). Ejemplos reales clasificados y confirmados por el
   comité: WMS = Medio, HIPERSAP = Alto.
+- `docs/06-stack-tecnico.md`: levantamiento de stack técnico. GitHub
+  (multi-repo), GitHub Actions, Azure como cloud aprobado, WMS e HIPERSAP
+  en .NET/C#.
 
 ### Pendiente (sigue bloqueando el cierre del Sprint 1)
-- Levantamiento de stack técnico real (lenguajes, frameworks, CI/CD, cloud).
-- Criterio de priorización de casos de uso por impacto de negocio.
+- Criterio de priorización de casos de uso por impacto de negocio (capa de
+  valor, `docs/02-valor-y-adopcion.md`).
 - Completar el inventario con cualquier otro repo/feature pendiente.
 - Crear la ficha de diligencia (Sprint 3) y aplicarla retroactivamente a
   WMS e HIPERSAP por estar en Medio/Alto.
