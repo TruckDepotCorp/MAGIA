@@ -149,6 +149,28 @@ Deuda técnica registrada, sin bloquear tampoco:
   + golden dataset real + pipeline CI validado contra un repo real
   (Sprint 3), skill `ficha-caso-de-uso` (Sprint 4).
 
+**Adelanto informal de Sprint 4 — 2026-08-04:** se instaló MAGIA v0.2.0 en
+**HIPERSAP** (`C:\NET_PROJECTS\HIPERSAP`, repo real de la empresa, no un
+repo de pruebas) a pedido explícito del usuario, para dar valor operativo
+inmediato en vez de esperar al orden formal de sprints:
+- `CLAUDE.md` de HIPERSAP: se le agregó una sección de Gobernanza de IA
+  (MAGIA) sin tocar su contenido técnico existente (ese CLAUDE.md ya tenía
+  documentación arquitectónica propia y detallada — se fusionó, no se
+  reemplazó).
+- Copiada la skill `elegir-patron-ia` a `.claude/skills/`.
+- Copiada la ficha de diligencia a `.claude/magia/ficha-caso-de-uso.md`.
+- Agregada `.github/PULL_REQUEST_TEMPLATE/ia.md` (plantilla opcional de
+  PR, no forzada en todos los PRs del repo).
+- **No se instalaron:** Rules (ninguna aplica todavía a la estructura real
+  de HIPERSAP) ni el pipeline CI de referencia (HIPERSAP no tiene GitHub
+  Actions configurado hoy — se evalúa aparte).
+- Todo quedó en la rama local `chore/adopt-magia-governance` de HIPERSAP,
+  **sin push, a pedido del usuario** — no confundir con "ya desplegado en
+  producción".
+- Esto adelanta parcialmente la tarea 5 del Sprint 4 ("selección y
+  preparación del repo piloto") fuera de orden — queda registrado como tal,
+  no se pretende que el Sprint 4 esté cerrado.
+
 **Nota de calendario (2026-08-04):** el Sprint 1 se cerró el mismo día que
 el calendario alcanzó la semana 4 (inicio del Sprint 2 según
 `docs/01-plan-tecnico-fase1.md`) — quedamos sincronizados con el plan de 10

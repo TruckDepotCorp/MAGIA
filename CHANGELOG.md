@@ -25,6 +25,13 @@ Este proyecto usa versionado semántico (ver `docs/03-gobernanza-repositorio.md`
   real de la empresa).
 - `skills/elegir-patron-ia/SKILL.md` actualizada para apuntar a los
   documentos reales (ya no dice "pendiente de completar en el Sprint 3").
+- **Adelanto informal de la tarea 5 del Sprint 4:** MAGIA v0.2.0 instalado
+  en HIPERSAP (`C:\NET_PROJECTS\HIPERSAP`, repo real) — `CLAUDE.md` fusionado
+  con su gobernanza (sin tocar el contenido técnico existente), skill
+  `elegir-patron-ia` y ficha de diligencia copiadas, plantilla de PR
+  agregada como opcional. Rama local `chore/adopt-magia-governance`, sin
+  push (a pedido del usuario). No instalado: Rules (ninguna aplica aún) ni
+  el pipeline CI (HIPERSAP no tiene GitHub Actions configurado hoy).
 
 ### Pendiente
 - Spike técnico con métricas reales de latencia/costo (Sprint 2) —
