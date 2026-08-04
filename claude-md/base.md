@@ -11,20 +11,23 @@
 ## Reglas globales de gobernanza (no negociables)
 
 - Nunca usar un modelo o proveedor de IA que no esté en la lista de
-  aprobados: **Anthropic (Claude Code)** es el único proveedor/modelo
-  **aprobado para uso en desarrollo**. ChatGPT y Grok están **en evaluación/
-  prueba** — no tienen aprobación de producción; mientras estén en esta
-  fase, no usarlos con datos reales de clientes ni PII, y registrar cualquier
-  prueba en el inventario de casos de uso (Sprint 1). Si un caso de uso
-  necesita un proveedor fuera de esta lista, escalar al comité de
-  gobernanza antes de usarlo (ver `magia-framework/docs/01-plan-tecnico-fase1.md`,
-  sección de roles).
+  aprobados. **Proveedores/modelos aprobados (actualizado 2026-08-04):**
+  Anthropic (Claude Code y vía Cursor), xAI (Grok), OpenAI (GPT), y el
+  modelo propio de Cursor ("Composer") — los cuatro aprobados dado el
+  historial real de uso: Cursor es la herramienta formal de IA de la
+  empresa desde hace ~1 año, previa a adoptar Claude Code (ver
+  `magia-framework/docs/04-diagnostico-inventario-ia.md`). Si un caso de
+  uso necesita un proveedor fuera de esta lista, escalar al comité de
+  gobernanza antes de usarlo.
 - Esta regla aplica al **modelo invocado por debajo**, no solo al nombre de
-  la herramienta: herramientas multi-modelo (ej. Cursor) pueden invocar
-  proveedores no aprobados según cómo se configuren, así que deben
+  la herramienta: herramientas multi-modelo (ej. Cursor) deben
   restringirse a modelos de la lista de aprobados — usar la herramienta no
-  exime de la regla (ver hallazgo real en
-  `magia-framework/docs/04-diagnostico-inventario-ia.md`).
+  exime de la regla.
+- **Que un proveedor esté aprobado no clasifica el nivel de riesgo de un
+  caso de uso.** Un caso de uso que toca PII en un sistema core sigue
+  necesitando su propia clasificación de riesgo (bajo/medio/alto) y, si es
+  medio/alto, la ficha de diligencia — independientemente de si el
+  proveedor usado ya está aprobado.
 - Nunca incluir secretos, credenciales, tokens ni datos de clientes reales
   en prompts, fixtures de prueba, o archivos de configuración versionados.
 - Todo caso de uso clasificado como **riesgo medio o alto** (ver matriz de

@@ -20,45 +20,48 @@ modelo que no está en ella.
 | # | Repo / feature | Herramienta | Proveedor | Modelo | Tipo de dato | ¿PII? | Dónde vive el prompt/config | Estado |
 |---|---|---|---|---|---|---|---|---|
 | 1 | `magia-framework` (este repo) | Claude Code | Anthropic (aprobado) | Sonnet 5 / Opus 5 | Documentación de gobernanza interna, sin datos de clientes | No | N/A — uso interactivo vía CLI, sin prompts versionados en el repo | Producción (uso interno del framework) |
-| 2 | **WMS** — sistema Core de Operaciones Internas | Cursor (cuenta Pro empresarial) | Anthropic (aprobado) | Opus 5, Sonnet 5 | Datos operativos del core de operaciones | **Sí** | `[por definir: si hay .cursor/rules o system prompts versionados en el repo]` | Prueba / uso activo |
-| 3 | **WMS** — sistema Core de Operaciones Internas | Cursor (cuenta Pro empresarial) | xAI (en evaluación) | Grok 4.5 high fast | Datos operativos del core de operaciones | **Sí** | `[por definir]` | Prueba / uso activo |
-| 4 | **WMS** — sistema Core de Operaciones Internas | Cursor (cuenta Pro empresarial) | OpenAI (en evaluación) | GPT-5.6 `[confirmar variante exacta — mencionada como "GPT-5.6 sol."]` | Datos operativos del core de operaciones | **Sí** | `[por definir]` | Prueba / uso activo |
-| 5 | **WMS** — sistema Core de Operaciones Internas | Cursor (cuenta Pro empresarial) | Cursor (modelo propio, en evaluación) | Composer 2.5 fast | Datos operativos del core de operaciones | **Sí** | `[por definir]` | Prueba / uso activo |
-| 6 | **HIPERSAP** — plataforma interna de procesos administrativos, integra con SAP B1 | Cursor (cuenta Pro empresarial) | Anthropic (aprobado) | Opus 5, Sonnet 5 | Datos administrativos/financieros (integración SAP B1) | **Sí** | `[por definir]` | Prueba / uso activo |
-| 7 | **HIPERSAP** — plataforma interna de procesos administrativos, integra con SAP B1 | Cursor (cuenta Pro empresarial) | xAI (en evaluación) | Grok 4.5 high fast | Datos administrativos/financieros (integración SAP B1) | **Sí** | `[por definir]` | Prueba / uso activo |
-| 8 | **HIPERSAP** — plataforma interna de procesos administrativos, integra con SAP B1 | Cursor (cuenta Pro empresarial) | OpenAI (en evaluación) | GPT-5.6 `[confirmar variante]` | Datos administrativos/financieros (integración SAP B1) | **Sí** | `[por definir]` | Prueba / uso activo |
-| 9 | **HIPERSAP** — plataforma interna de procesos administrativos, integra con SAP B1 | Cursor (cuenta Pro empresarial) | Cursor (modelo propio, en evaluación) | Composer 2.5 fast | Datos administrativos/financieros (integración SAP B1) | **Sí** | `[por definir]` | Prueba / uso activo |
-| 10 | ChatGPT (mencionado de forma general, Sprint 1) | `[por definir: ¿es el mismo GPT-5.6 vía Cursor de las filas 4/8, o un uso separado fuera de Cursor?]` | OpenAI | `[por definir]` | `[por definir]` | `[por definir]` | `[por definir]` | En evaluación |
-| 11 | Grok (mencionado de forma general, Sprint 1) | `[por definir: ¿es el mismo Grok 4.5 vía Cursor de las filas 3/7, o un uso separado fuera de Cursor?]` | xAI | `[por definir]` | `[por definir]` | `[por definir]` | `[por definir]` | En evaluación |
+| 2 | **WMS** — sistema Core de Operaciones Internas | Cursor (cuenta Pro empresarial) | Anthropic (aprobado) | Opus 5, Sonnet 5 | Datos operativos del core de operaciones | **Sí** | `[por definir: si hay .cursor/rules o system prompts versionados en el repo]` | En uso (~1 año — Cursor es la herramienta formal de IA de la empresa, previa a Claude Code) |
+| 3 | **WMS** — sistema Core de Operaciones Internas | Cursor (cuenta Pro empresarial) | xAI (aprobado 2026-08-04) | Grok 4.5 high fast | Datos operativos del core de operaciones | **Sí** | `[por definir]` | En uso (~1 año) |
+| 4 | **WMS** — sistema Core de Operaciones Internas | Cursor (cuenta Pro empresarial) | OpenAI (aprobado 2026-08-04) | GPT-5.6 `[confirmar variante exacta — mencionada como "GPT-5.6 sol."]` | Datos operativos del core de operaciones | **Sí** | `[por definir]` | En uso (~1 año) |
+| 5 | **WMS** — sistema Core de Operaciones Internas | Cursor (cuenta Pro empresarial) | Cursor, modelo propio (aprobado 2026-08-04) | Composer 2.5 fast | Datos operativos del core de operaciones | **Sí** | `[por definir]` | En uso (~1 año) |
+| 6 | **HIPERSAP** — plataforma interna de procesos administrativos, integra con SAP B1 | Cursor (cuenta Pro empresarial) | Anthropic (aprobado) | Opus 5, Sonnet 5 | Datos administrativos/financieros (integración SAP B1) | **Sí** | `[por definir]` | En uso (~1 año) |
+| 7 | **HIPERSAP** — plataforma interna de procesos administrativos, integra con SAP B1 | Cursor (cuenta Pro empresarial) | xAI (aprobado 2026-08-04) | Grok 4.5 high fast | Datos administrativos/financieros (integración SAP B1) | **Sí** | `[por definir]` | En uso (~1 año) |
+| 8 | **HIPERSAP** — plataforma interna de procesos administrativos, integra con SAP B1 | Cursor (cuenta Pro empresarial) | OpenAI (aprobado 2026-08-04) | GPT-5.6 `[confirmar variante]` | Datos administrativos/financieros (integración SAP B1) | **Sí** | `[por definir]` | En uso (~1 año) |
+| 9 | **HIPERSAP** — plataforma interna de procesos administrativos, integra con SAP B1 | Cursor (cuenta Pro empresarial) | Cursor, modelo propio (aprobado 2026-08-04) | Composer 2.5 fast | Datos administrativos/financieros (integración SAP B1) | **Sí** | `[por definir]` | En uso (~1 año) |
 
-## Hallazgo de la auditoría (para decisión del comité)
+**Nota (2026-08-04):** las menciones sueltas de "ChatGPT" y "Grok" que
+aparecían como filas separadas en una versión anterior de este documento se
+confirmaron como el mismo uso de las filas 3/4/7/8 (vía Cursor, en
+WMS/HIPERSAP) — no son casos de uso distintos, se retiraron para no
+duplicar el inventario.
+
+## Hallazgo de la auditoría — actualizado 2026-08-04
 
 **WMS e HIPERSAP — dos sistemas core (operaciones internas y la integración
-administrativa con SAP B1) — ya se usaron con Cursor configurado para
-invocar proveedores no aprobados (xAI/Grok, OpenAI/GPT-5.6, y el modelo
-propio "Composer" de Cursor) sobre datos que incluyen PII, antes de que
-existiera una clasificación de riesgo formal o una ficha de diligencia.**
+administrativa con SAP B1) — vienen usando Cursor desde hace ~1 año como la
+herramienta formal de IA de la empresa, previa a adoptar Claude Code. Ese
+uso ya tocaba PII con Grok 4.5, GPT-5.6 y el modelo propio "Composer" de
+Cursor, antes de que existiera una clasificación de riesgo formal.**
 
-Esto es exactamente el tipo de hallazgo que la auditoría del Sprint 1 debe
-sacar a la luz — no se está señalando como una falta, sino registrando como
-insumo real para la matriz de riesgo (pendiente #5) y para decidir si Cursor
-se formaliza como herramienta aprobada.
+**Decisión del comité (2026-08-04):** los cuatro proveedores usados vía
+Cursor — Anthropic, xAI, OpenAI, y el modelo propio de Cursor — quedan
+**aprobados**, dado el historial real de ~1 año de uso (ver actualización en
+`claude-md/base.md`).
 
-Definir el nivel de riesgo es una decisión humana del comité, no de Claude
-Code (ver `docs/00-plan-metodologico-4D.md` §1, tabla de reparto de tareas:
-"Definir niveles de riesgo por caso de uso | Humano"). Este documento deja
-el nivel como **preliminar, sin clasificar**, a la espera de esa decisión.
+Esto resuelve la parte de "proveedor no aprobado" del hallazgo original.
+**Sigue sin resolver, y es una decisión distinta:** que un proveedor esté
+aprobado no clasifica el nivel de riesgo del caso de uso en sí. WMS e
+HIPERSAP tocan PII en sistemas core y todavía no tienen un nivel de riesgo
+(bajo/medio/alto) asignado formalmente. Definir ese nivel es una decisión
+humana del comité, no de Claude Code (ver `docs/00-plan-metodologico-4D.md`
+§1, tabla de reparto de tareas: "Definir niveles de riesgo por caso de uso |
+Humano").
 
 ## Pendiente
 
-- El comité clasifica formalmente el nivel de riesgo de WMS e HIPERSAP
-  (bajo/medio/alto) con este caso como ejemplo real.
-- Decidir si Cursor se agrega como **herramienta aprobada** y bajo qué
-  condición (ej. solo si se configura con modelos ya aprobados de Anthropic;
-  o se amplía la lista de proveedores aprobados para incluir xAI/OpenAI en
-  este contexto).
-- Confirmar si las filas 10 y 11 (ChatGPT, Grok mencionados de forma
-  general) son el mismo uso vía Cursor en WMS/HIPERSAP o casos separados.
+- Clasificar formalmente el **nivel de riesgo** (bajo/medio/alto) de WMS e
+  HIPERSAP como casos de uso — distinto de la aprobación de proveedor, ya
+  resuelta.
 - Registrar dónde viven los prompts/config en los repos de WMS e HIPERSAP
   (`.cursor/rules`, system prompts, u otro).
 - Completar el inventario con cualquier otro repo/feature de la empresa que

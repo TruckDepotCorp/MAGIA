@@ -98,23 +98,22 @@ global) y `docs/00-plan-metodologico-4D.md` §1. Pendiente: registrar el
 detalle de estas pruebas (qué repo/feature, qué dato, PII sí/no) en el
 inventario de casos de uso.
 
-En progreso — 2026-08-04: inventario de casos de uso arrancado en
-`docs/04-diagnostico-inventario-ia.md`. Cubre Claude Code (este repo), y
-Cursor probado en **WMS** (Core de Operaciones Internas) e **HIPERSAP**
-(procesos administrativos, integra con SAP B1) con Composer 2.5 fast, Grok
-4.5 high fast, Opus 5, Sonnet 5 y GPT-5.6. **Hallazgo importante:** ambos
-repos ya tocaron PII con proveedores no aprobados (Grok, GPT-5.6, Composer)
-antes de tener clasificación de riesgo formal — pendiente de que el comité
-lo clasifique (ver el documento para el detalle, no es una decisión mía).
+Resuelto — 2026-08-04: inventario de casos de uso en
+`docs/04-diagnostico-inventario-ia.md`. Cubre Claude Code (este repo) y
+Cursor en **WMS** (Core de Operaciones Internas) e **HIPERSAP** (procesos
+administrativos, integra con SAP B1) con Composer 2.5 fast, Grok 4.5 high
+fast, Opus 5, Sonnet 5 y GPT-5.6 — confirmado que las menciones sueltas de
+"ChatGPT"/"Grok" eran este mismo uso, no casos separados. **Cursor es la
+herramienta formal de IA de la empresa desde hace ~1 año, previa a Claude
+Code** — el comité aprobó los cuatro proveedores (Anthropic, xAI, OpenAI,
+Cursor/Composer) dado ese historial real de uso. Ver `claude-md/base.md`.
 
 Sigue pendiente — datos reales de la organización que aún no se han
 provisto, **pregúntalos antes de asumirlos**:
 
-- Que el comité clasifique el riesgo de WMS e HIPERSAP y decida si Cursor
-  se formaliza como herramienta aprobada (ver hallazgo en
+- Clasificar el **nivel de riesgo** (bajo/medio/alto) de WMS e HIPERSAP como
+  casos de uso — distinto de la aprobación de proveedor, ya resuelta (ver
   `docs/04-diagnostico-inventario-ia.md`).
-- Confirmar si "ChatGPT"/"Grok" mencionados sueltos son el mismo uso vía
-  Cursor o casos separados.
 - Levantamiento de stack técnico real (lenguajes, frameworks, CI/CD, cloud).
 - Criterios de riesgo con ejemplos reales de la propia empresa (no
   genéricos) — WMS/HIPERSAP ya son un ejemplo real disponible.

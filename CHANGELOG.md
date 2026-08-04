@@ -32,10 +32,17 @@ Este proyecto usa versionado semántico (ver `docs/03-gobernanza-repositorio.md`
 - Regla global de `claude-md/base.md` ampliada: la lista de aprobados aplica
   al modelo invocado por debajo, no solo al nombre de la herramienta
   (relevante para herramientas multi-modelo como Cursor).
+- **Decisión del comité:** Anthropic, xAI (Grok), OpenAI (GPT) y el modelo
+  propio de Cursor ("Composer") quedan aprobados, dado que Cursor es la
+  herramienta formal de IA de la empresa desde hace ~1 año, previa a Claude
+  Code. Confirmado que las menciones sueltas de ChatGPT/Grok eran el mismo
+  uso vía Cursor en WMS/HIPERSAP — se retiraron del inventario como filas
+  duplicadas. Se deja explícito que la aprobación de proveedor **no**
+  clasifica el nivel de riesgo del caso de uso — eso sigue pendiente.
 
 ### Pendiente (sigue bloqueando el cierre del Sprint 1)
-- Que el comité clasifique el riesgo de WMS e HIPERSAP y decida sobre
-  Cursor como herramienta aprobada.
+- Clasificar el nivel de riesgo (bajo/medio/alto) de WMS e HIPERSAP como
+  casos de uso.
 - Completar el inventario con cualquier otro repo/feature pendiente.
 - Levantamiento de stack técnico real.
 - Matriz de niveles de riesgo con ejemplos reales de la propia empresa.
