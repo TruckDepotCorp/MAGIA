@@ -21,8 +21,9 @@ en sus propios repos.
 5. **`docs/03-gobernanza-repositorio.md`** — cómo se versiona y distribuye
    este repo a los repos de producto.
 6. **`docs/04-diagnostico-inventario-ia.md`** — inventario real de casos de
-   uso de IA (Sprint 1), incluye hallazgos pendientes de clasificación de
-   riesgo por el comité.
+   uso de IA (Sprint 1).
+7. **`docs/05-matriz-riesgo.md`** — matriz de niveles de riesgo (Sprint 1),
+   con WMS e HIPERSAP como primeros ejemplos reales clasificados.
 
 ## Estructura
 

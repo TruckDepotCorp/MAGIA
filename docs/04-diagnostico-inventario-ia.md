@@ -57,12 +57,14 @@ humana del comité, no de Claude Code (ver `docs/00-plan-metodologico-4D.md`
 §1, tabla de reparto de tareas: "Definir niveles de riesgo por caso de uso |
 Humano").
 
+**Nivel de riesgo clasificado (2026-08-04):** WMS = **Medio**, HIPERSAP =
+**Alto** — ver rúbrica y racional completo en `docs/05-matriz-riesgo.md`.
+
 ## Pendiente
 
-- Clasificar formalmente el **nivel de riesgo** (bajo/medio/alto) de WMS e
-  HIPERSAP como casos de uso — distinto de la aprobación de proveedor, ya
-  resuelta.
 - Registrar dónde viven los prompts/config en los repos de WMS e HIPERSAP
   (`.cursor/rules`, system prompts, u otro).
 - Completar el inventario con cualquier otro repo/feature de la empresa que
   use IA y no esté listado aquí todavía.
+- Crear la ficha de diligencia (Sprint 3) y aplicarla retroactivamente a
+  WMS e HIPERSAP por estar en Medio/Alto (ver `docs/05-matriz-riesgo.md`).

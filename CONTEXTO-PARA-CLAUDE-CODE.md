@@ -108,15 +108,16 @@ herramienta formal de IA de la empresa desde hace ~1 año, previa a Claude
 Code** — el comité aprobó los cuatro proveedores (Anthropic, xAI, OpenAI,
 Cursor/Composer) dado ese historial real de uso. Ver `claude-md/base.md`.
 
+Resuelto — 2026-08-04: matriz de niveles de riesgo con rúbrica técnica de 4
+criterios (PII, autonomía, exposición externa, reversibilidad) en
+`docs/05-matriz-riesgo.md`. Ejemplos reales clasificados: **WMS = Medio**,
+**HIPERSAP = Alto** (por su exposición externa vía SAP B1), confirmado por
+el comité.
+
 Sigue pendiente — datos reales de la organización que aún no se han
 provisto, **pregúntalos antes de asumirlos**:
 
-- Clasificar el **nivel de riesgo** (bajo/medio/alto) de WMS e HIPERSAP como
-  casos de uso — distinto de la aprobación de proveedor, ya resuelta (ver
-  `docs/04-diagnostico-inventario-ia.md`).
 - Levantamiento de stack técnico real (lenguajes, frameworks, CI/CD, cloud).
-- Criterios de riesgo con ejemplos reales de la propia empresa (no
-  genéricos) — WMS/HIPERSAP ya son un ejemplo real disponible.
 - Criterio de priorización de casos de uso por impacto de negocio (para la
   capa de valor).
 

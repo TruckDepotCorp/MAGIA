@@ -40,10 +40,17 @@ Este proyecto usa versionado semántico (ver `docs/03-gobernanza-repositorio.md`
   duplicadas. Se deja explícito que la aprobación de proveedor **no**
   clasifica el nivel de riesgo del caso de uso — eso sigue pendiente.
 
+- `docs/05-matriz-riesgo.md`: matriz de niveles de riesgo con rúbrica
+  técnica de 4 criterios (PII, autonomía, exposición externa,
+  reversibilidad). Ejemplos reales clasificados y confirmados por el
+  comité: WMS = Medio, HIPERSAP = Alto.
+
 ### Pendiente (sigue bloqueando el cierre del Sprint 1)
-- Clasificar el nivel de riesgo (bajo/medio/alto) de WMS e HIPERSAP como
-  casos de uso.
+- Levantamiento de stack técnico real (lenguajes, frameworks, CI/CD, cloud).
+- Criterio de priorización de casos de uso por impacto de negocio.
 - Completar el inventario con cualquier otro repo/feature pendiente.
+- Crear la ficha de diligencia (Sprint 3) y aplicarla retroactivamente a
+  WMS e HIPERSAP por estar en Medio/Alto.
 - Levantamiento de stack técnico real.
 - Matriz de niveles de riesgo con ejemplos reales de la propia empresa.
 - Criterio de priorización de casos de uso por impacto de negocio.
