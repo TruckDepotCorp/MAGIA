@@ -190,6 +190,25 @@ configuración viva dentro de un repo real, con un equipo usándola.
 - [ ] Al menos un hook de seguridad bloqueó correctamente un caso real (o se probó deliberadamente que lo haría).
 - [ ] El equipo piloto puede describir en sus propias palabras qué reemplazó MAGIA en su flujo anterior.
 
+### Estado — 2026-08-04
+
+- [x] `CLAUDE.md` final consolidado en `claude-md/base.md` v0.2.0.
+- [x] Segundo ejemplo de Rule path-scoped: `rules/example-external-integration.md`.
+- [x] Skills mínimo viable completas: `elegir-patron-ia`, `ficha-caso-de-uso`,
+  `checklist-pre-deploy` (creadas a mano — `skill-creator` no está
+  disponible en este entorno).
+- [x] Hooks básicos de referencia: `templates/settings-hooks-referencia.json`
+  + `templates/hooks/` — en **modo advertencia**, no bloqueo duro (a
+  propósito, ver riesgos técnicos abajo).
+- [x] Repo piloto elegido informalmente: **HIPERSAP** — `CLAUDE.md`
+  fusionado, skill `elegir-patron-ia` y ficha de diligencia instaladas,
+  plantilla de PR agregada (ver `CONTEXTO-PARA-CLAUDE-CODE.md`).
+- [ ] Rules y hooks **no** instalados todavía en HIPERSAP (pendiente
+  adaptar el `scope` real y validar el hook en ese repo).
+- [ ] Onboarding del equipo piloto — no se ha hecho.
+- [ ] Primer ciclo de uso real (3-5 días) y reporte de fricciones — no
+  se ha hecho; no se puede simular.
+
 ---
 
 ## Vista resumida (Gantt simplificado)

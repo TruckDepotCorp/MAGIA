@@ -53,17 +53,28 @@ magia-framework/
 
 Versión `0.2.0` — Sprint 1 cerrado el 2026-08-04, con un pendiente en la
 capa de valor (paralela, no bloqueante — ver
-`docs/02-valor-y-adopcion.md`). Sprint 2 (Arquitectura de referencia) y
-Sprint 3 (Estándares de desarrollo y catálogo de capacidades) avanzados en
-paralelo — el spike técnico y el pipeline CI validado contra un repo real
-siguen pendientes hasta que exista un primer caso de uso de producto. Ver
-`CHANGELOG.md` para el detalle de cambios.
+`docs/02-valor-y-adopcion.md`). Sprints 2, 3 y 4 avanzados en paralelo:
+estándar de arquitectura, estándares de desarrollo, catálogo de
+capacidades, 3 Skills, 2 Rules de ejemplo, y hooks básicos de referencia
+(modo advertencia). **HIPERSAP** es el primer repo piloto (informal) —
+`CLAUDE.md` fusionado y Skill instalada ahí. Pendiente real (no
+simulable): spike técnico, golden dataset de evals, onboarding del equipo
+piloto, y primer ciclo de uso real. Ver `CHANGELOG.md` para el detalle
+completo.
 
 ## Cómo adoptar MAGIA en un repo de producto
 
-1. Copiar `claude-md/base.md` → `CLAUDE.md` en la raíz del repo, completando
-   la sección "Específico de este repo".
-2. Copiar las Rules que apliquen de `rules/` → `.claude/rules/` del repo.
+1. Copiar `claude-md/base.md` → `CLAUDE.md` en la raíz del repo. Si el repo
+   **ya tiene** un `CLAUDE.md` con documentación técnica propia:
+   **fusionar, no reemplazar** (ver el `CLAUDE.md` de HIPERSAP como
+   ejemplo real). Completar la sección "Específico de este repo".
+2. Copiar las Rules que apliquen de `rules/` → `.claude/rules/` del repo,
+   **adaptando el `scope`** a la estructura real (los `scope` de este repo
+   son ejemplos genéricos, no rutas literales a copiar sin revisar).
 3. Copiar las Skills que apliquen de `skills/` → `.claude/skills/` del repo.
-4. Registrar en el `CLAUDE.md` copiado qué versión de `magia-framework` se
+4. Copiar los hooks de `templates/settings-hooks-referencia.json` a
+   `.claude/settings.json` si se quiere activar el modo advertencia de
+   diligencia — verificar la sintaxis de hooks vigente en la documentación
+   oficial de Claude Code antes de confiar en la plantilla.
+5. Registrar en el `CLAUDE.md` copiado qué versión de `magia-framework` se
    está usando (tag/release).

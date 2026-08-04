@@ -3,7 +3,7 @@
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 Este proyecto usa versionado semántico (ver `docs/03-gobernanza-repositorio.md`).
 
-## [Unreleased] - Sprint 2 + Sprint 3 en curso
+## [Unreleased] - Sprint 2 + Sprint 3 + Sprint 4 en curso
 
 ### Agregado
 - `docs/07-arquitectura-referencia.md`: estándar de MAGIA para integrar IA
@@ -29,9 +29,25 @@ Este proyecto usa versionado semántico (ver `docs/03-gobernanza-repositorio.md`
   en HIPERSAP (`C:\NET_PROJECTS\HIPERSAP`, repo real) — `CLAUDE.md` fusionado
   con su gobernanza (sin tocar el contenido técnico existente), skill
   `elegir-patron-ia` y ficha de diligencia copiadas, plantilla de PR
-  agregada como opcional. Rama local `chore/adopt-magia-governance`, sin
-  push (a pedido del usuario). No instalado: Rules (ninguna aplica aún) ni
-  el pipeline CI (HIPERSAP no tiene GitHub Actions configurado hoy).
+  agregada como opcional. Mergeado a `master` de HIPERSAP (rama
+  `chore/adopt-magia-governance`, merge `--no-ff`), sin push (a pedido del
+  usuario). No instalado ahí: Rules (ninguna aplica aún) ni el pipeline CI
+  (HIPERSAP no tiene GitHub Actions configurado hoy).
+- `claude-md/base.md` consolidado a v0.2.0 (tarea 1 del Sprint 4):
+  referencias obsoletas corregidas (apuntaba a `docs/00` para la matriz de
+  riesgo, ahora apunta a `docs/05`), nota de "fusionar, no reemplazar" si
+  el repo ya tiene un `CLAUDE.md` técnico propio.
+- `rules/example-external-integration.md`: segundo ejemplo de Rule
+  path-scoped (tarea 2 del Sprint 4), para el tipo de área crítica real
+  identificada en el Sprint 1 (integración con sistemas externos, ej. SAP
+  B1 en HIPERSAP).
+- `skills/ficha-caso-de-uso/SKILL.md` y `skills/checklist-pre-deploy/SKILL.md`
+  (tarea 3 del Sprint 4) — creadas a mano; `skill-creator` no está
+  disponible en este entorno.
+- `templates/settings-hooks-referencia.json` + `templates/hooks/*.sh`
+  (tarea 4 del Sprint 4) — hooks básicos en **modo advertencia**, no
+  bloqueo duro, a propósito (ver riesgos técnicos de
+  `docs/01-plan-tecnico-fase1.md`).
 
 ### Pendiente
 - Spike técnico con métricas reales de latencia/costo (Sprint 2) —
@@ -40,8 +56,9 @@ Este proyecto usa versionado semántico (ver `docs/03-gobernanza-repositorio.md`
 - Elegir/construir el framework de evals concreto y generar el primer
   golden dataset real (Sprint 3).
 - Ejecutar `templates/ci-pipeline-referencia.yml` contra un repo real.
-- Crear la skill `ficha-caso-de-uso` (Sprint 4) que automatice
-  `templates/ficha-caso-de-uso.md`.
+- Instalar Rules y hooks en HIPERSAP (adaptar `scope`/rutas reales antes).
+- Onboarding del equipo piloto y primer ciclo de uso real (3-5 días) —
+  no se puede simular, requiere tiempo real de adopción.
 
 ## [0.2.0] - Cierre Sprint 1 (Diagnóstico y Gobernanza) - 2026-08-04
 

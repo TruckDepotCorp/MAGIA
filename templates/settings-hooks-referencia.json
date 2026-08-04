@@ -1,0 +1,27 @@
+{
+  "_comment": "Plantilla de hooks del Sprint 4 (docs/01-plan-tecnico-fase1.md). Copiar el bloque 'hooks' a .claude/settings.json del repo que la adopte. Empieza en modo ADVERTENCIA, no bloqueo duro (ver docs/01, sección de riesgos técnicos: 'hooks demasiado agresivos desde el día uno pueden generar rechazo al marco'). Verificar la sintaxis vigente de hooks en la documentación oficial de Claude Code antes de confiar en esto en un repo real — la mecánica puede evolucionar (ver docs/00-plan-metodologico-4D.md §5).",
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash templates/hooks/check-sensitive-files.sh"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash templates/hooks/run-evals-if-relevant.sh"
+          }
+        ]
+      }
+    ]
+  }
+}

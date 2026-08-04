@@ -1,11 +1,18 @@
-# CLAUDE.md — Base MAGIA v0.1
+# CLAUDE.md — Base MAGIA v0.2.0
 
 > Copiar este archivo a la raíz de cada repo de producto que adopte MAGIA.
 > Editar solo la sección "Específico de este repo" — el resto son reglas
 > globales de gobernanza que no deben modificarse sin pasar por el comité
 > (ver `magia-framework/docs/03-gobernanza-repositorio.md`).
 >
-> Fuente: `magia-framework` versión `[VERSION]`. No editar reglas globales
+> Si el repo ya tiene un `CLAUDE.md` con documentación técnica propia (ej.
+> arquitectura, convenciones de código): **fusionar, no reemplazar** —
+> agregar esta sección de gobernanza junto al contenido técnico existente
+> (ver el `CLAUDE.md` de HIPERSAP, primer repo piloto real, como ejemplo
+> de cómo se hizo — `docs/04-diagnostico-inventario-ia.md` en este repo).
+>
+> Fuente: `magia-framework` versión `0.2.0`
+> (https://github.com/TruckDepotCorp/MAGIA). No editar reglas globales
 > localmente — proponer el cambio como PR en el repo fuente.
 
 ## Reglas globales de gobernanza (no negociables)
@@ -30,14 +37,19 @@
   proveedor usado ya está aprobado.
 - Nunca incluir secretos, credenciales, tokens ni datos de clientes reales
   en prompts, fixtures de prueba, o archivos de configuración versionados.
-- Todo caso de uso clasificado como **riesgo medio o alto** (ver matriz de
-  riesgo en `magia-framework/docs/00-plan-metodologico-4D.md`) debe pasar
-  por la ficha de diligencia (`skills/ficha-caso-de-uso`) antes de
-  implementarse.
+- Todo caso de uso clasificado como **riesgo medio o alto** — clasificar
+  con la rúbrica de `magia-framework/docs/05-matriz-riesgo.md` — debe
+  completar la ficha de diligencia (`templates/ficha-caso-de-uso.md`, o la
+  skill `ficha-caso-de-uso` si ya está copiada a `.claude/skills/`) y
+  obtener aprobación del comité antes de implementarse.
 - Todo cambio en prompts o configuración de modelo que afecte producción
-  debe pasar por el pipeline de evals antes de mergear.
+  debe pasar por el pipeline de evals antes de mergear (ver
+  `magia-framework/templates/ci-pipeline-referencia.yml` y
+  `magia-framework/docs/08-estandares-desarrollo.md`).
 - Ningún componente de IA se despliega a producción sin pasar la compuerta
-  de despliegue (ver checklist de diligencia).
+  de despliegue — usar `skills/checklist-pre-deploy` si está disponible en
+  el repo, o el checklist de Diligencia de
+  `magia-framework/docs/00-plan-metodologico-4D.md` §4.
 
 ## Cuándo escalar a un humano
 
@@ -58,4 +70,5 @@
 - Skills activas en este repo: ver `.claude/skills/`
 
 ---
-**Owner de este archivo:** `[por definir]` · **Versión de MAGIA:** `0.1.0`
+**Owner de este archivo:** definido por repo, ver "Específico de este
+repo" arriba · **Versión de MAGIA:** `0.2.0`

@@ -170,6 +170,34 @@ inmediato en vez de esperar al orden formal de sprints:
 - Esto adelanta parcialmente la tarea 5 del Sprint 4 ("selección y
   preparación del repo piloto") fuera de orden — queda registrado como tal,
   no se pretende que el Sprint 4 esté cerrado.
+- Actualización 2026-08-04: la rama `chore/adopt-magia-governance` de
+  HIPERSAP se revisó (se corrigió una referencia rota a
+  `.github/pull_request_template.md` → `.github/PULL_REQUEST_TEMPLATE/ia.md`)
+  y se **mergeó a `master`** de HIPERSAP con `--no-ff`. Sigue sin push, a
+  pedido del usuario. El `git fetch` de HIPERSAP falla por el mismo
+  problema de SSH que tuvimos en este repo (resuelto aquí cambiando a
+  HTTPS) — no se ha verificado si `origin/master` de HIPERSAP avanzó
+  mientras tanto.
+
+**Resto del Sprint 4 avanzado en `magia-framework` — 2026-08-04:**
+- `claude-md/base.md` consolidado a v0.2.0 (tarea 1): referencias
+  obsoletas corregidas, nota de "fusionar, no reemplazar" agregada.
+- `rules/example-external-integration.md` (tarea 2): segundo ejemplo,
+  ilustra el tipo de área crítica real (integración con sistemas externos)
+  — el `scope` es genérico, se adapta a la ruta real al copiarlo a un repo.
+- `skills/ficha-caso-de-uso/` y `skills/checklist-pre-deploy/` (tarea 3):
+  completa el mínimo viable de 3 Skills. Creadas a mano — **`skill-creator`
+  no está disponible en este entorno** (no aparece en la lista de skills
+  invocables de la sesión), a diferencia de lo que asumía
+  `CONTEXTO-PARA-CLAUDE-CODE.md` §7 originalmente.
+- `templates/settings-hooks-referencia.json` + `templates/hooks/*.sh`
+  (tarea 4): hooks de referencia en modo advertencia (no bloqueo duro, a
+  propósito — ver riesgos técnicos del Sprint 4 en
+  `docs/01-plan-tecnico-fase1.md`). No probados contra una sesión real de
+  Claude Code todavía.
+- **Sigue pendiente, sin poder simularse:** instalar Rules/hooks en
+  HIPERSAP con rutas reales, onboarding del equipo piloto, y el primer
+  ciclo de uso real de 3-5 días con reporte de fricciones.
 
 **Nota de calendario (2026-08-04):** el Sprint 1 se cerró el mismo día que
 el calendario alcanzó la semana 4 (inicio del Sprint 2 según
