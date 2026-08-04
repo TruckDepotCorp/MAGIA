@@ -31,8 +31,9 @@ Este proyecto usa versionado semántico (ver `docs/03-gobernanza-repositorio.md`
   `elegir-patron-ia` y ficha de diligencia copiadas, plantilla de PR
   agregada como opcional. Mergeado a `master` de HIPERSAP (rama
   `chore/adopt-magia-governance`, merge `--no-ff`), sin push (a pedido del
-  usuario). No instalado ahí: Rules (ninguna aplica aún) ni el pipeline CI
-  (HIPERSAP no tiene GitHub Actions configurado hoy).
+  usuario). No instalado en esa primera pasada: Rules ni hooks — ver instalación
+  real más abajo. Pipeline CI todavía sin instalar (HIPERSAP no tiene
+  GitHub Actions configurado hoy).
 - `claude-md/base.md` consolidado a v0.2.0 (tarea 1 del Sprint 4):
   referencias obsoletas corregidas (apuntaba a `docs/00` para la matriz de
   riesgo, ahora apunta a `docs/05`), nota de "fusionar, no reemplazar" si
@@ -48,6 +49,18 @@ Este proyecto usa versionado semántico (ver `docs/03-gobernanza-repositorio.md`
   (tarea 4 del Sprint 4) — hooks básicos en **modo advertencia**, no
   bloqueo duro, a propósito (ver riesgos técnicos de
   `docs/01-plan-tecnico-fase1.md`).
+- **Rules y hooks reales instalados en HIPERSAP** (no genéricos):
+  explorando el código real se encontraron las rutas de la integración SAP
+  B1 (`Core/SAPServices/`, `Core/SAPInterfaces/`, `Core/SAPModels/`,
+  `SBOController`) y una segunda área crítica no anticipada en el Sprint 1
+  — PII de empleados vía BioTime/Humand (`Core/RHModels/`). Instaladas 2
+  Rules y hooks en `.claude/settings.json` (no `settings.local.json`, que
+  es personal/gitignored), probados manualmente a nivel de script.
+- `rules/example-pii-terceros-rrhh.md`: tercer patrón genérico de Rule,
+  generalizado a partir del hallazgo real en HIPERSAP — PII de empleados
+  vía proveedor SaaS externo de RRHH, distinto de PII de clientes
+  (`example-external-integration.md`) o features de IA en el producto
+  (`example-ai-features.md`).
 
 ### Pendiente
 - Spike técnico con métricas reales de latencia/costo (Sprint 2) —
@@ -56,7 +69,8 @@ Este proyecto usa versionado semántico (ver `docs/03-gobernanza-repositorio.md`
 - Elegir/construir el framework de evals concreto y generar el primer
   golden dataset real (Sprint 3).
 - Ejecutar `templates/ci-pipeline-referencia.yml` contra un repo real.
-- Instalar Rules y hooks en HIPERSAP (adaptar `scope`/rutas reales antes).
+- Validar los hooks dentro de una sesión real de Claude Code (solo se
+  probaron los scripts de forma manual/aislada).
 - Onboarding del equipo piloto y primer ciclo de uso real (3-5 días) —
   no se puede simular, requiere tiempo real de adopción.
 

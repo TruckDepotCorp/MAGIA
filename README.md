@@ -55,9 +55,10 @@ Versión `0.2.0` — Sprint 1 cerrado el 2026-08-04, con un pendiente en la
 capa de valor (paralela, no bloqueante — ver
 `docs/02-valor-y-adopcion.md`). Sprints 2, 3 y 4 avanzados en paralelo:
 estándar de arquitectura, estándares de desarrollo, catálogo de
-capacidades, 3 Skills, 2 Rules de ejemplo, y hooks básicos de referencia
+capacidades, 3 Skills, 3 Rules de ejemplo, y hooks básicos de referencia
 (modo advertencia). **HIPERSAP** es el primer repo piloto (informal) —
-`CLAUDE.md` fusionado y Skill instalada ahí. Pendiente real (no
+`CLAUDE.md` fusionado, Skill, y **2 Rules + hooks con rutas reales**
+instaladas (integración SAP B1, PII de empleados vía BioTime/Humand). Pendiente real (no
 simulable): spike técnico, golden dataset de evals, onboarding del equipo
 piloto, y primer ciclo de uso real. Ver `CHANGELOG.md` para el detalle
 completo.

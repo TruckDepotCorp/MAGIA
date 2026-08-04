@@ -203,8 +203,16 @@ configuración viva dentro de un repo real, con un equipo usándola.
 - [x] Repo piloto elegido informalmente: **HIPERSAP** — `CLAUDE.md`
   fusionado, skill `elegir-patron-ia` y ficha de diligencia instaladas,
   plantilla de PR agregada (ver `CONTEXTO-PARA-CLAUDE-CODE.md`).
-- [ ] Rules y hooks **no** instalados todavía en HIPERSAP (pendiente
-  adaptar el `scope` real y validar el hook en ese repo).
+- [x] Rules instaladas en HIPERSAP con rutas reales (2026-08-04):
+  `sap-integration.md` (`Core/SAPServices/`, `Core/SAPInterfaces/`,
+  `Core/SAPModels/`, `SBOController`) y `rrhh-datos-empleados.md`
+  (`Core/RHModels/`, servicios BioTime/Humand — PII de empleados, un tipo
+  de riesgo no anticipado en el Sprint 1). Este segundo patrón se
+  generalizó de vuelta a `rules/example-pii-terceros-rrhh.md`.
+- [x] Hooks instalados en `.claude/settings.json` de HIPERSAP (no
+  `settings.local.json`, que es personal), probados manualmente a nivel de
+  script (exit 0, modo advertencia) — **no** probados aún dentro de una
+  sesión real de Claude Code end-to-end.
 - [ ] Onboarding del equipo piloto — no se ha hecho.
 - [ ] Primer ciclo de uso real (3-5 días) y reporte de fricciones — no
   se ha hecho; no se puede simular.

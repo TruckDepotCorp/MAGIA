@@ -195,9 +195,21 @@ inmediato en vez de esperar al orden formal de sprints:
   propósito — ver riesgos técnicos del Sprint 4 en
   `docs/01-plan-tecnico-fase1.md`). No probados contra una sesión real de
   Claude Code todavía.
-- **Sigue pendiente, sin poder simularse:** instalar Rules/hooks en
-  HIPERSAP con rutas reales, onboarding del equipo piloto, y el primer
-  ciclo de uso real de 3-5 días con reporte de fricciones.
+- **Actualización 2026-08-04 — Rules y hooks reales instalados en
+  HIPERSAP** (no genéricos): explorando el código real se encontraron las
+  rutas reales de la integración SAP B1 (`Core/SAPServices/`,
+  `Core/SAPInterfaces/`, `Core/SAPModels/`, `SBOController`) y, algo que
+  el Sprint 1 no había anticipado, una segunda área crítica real —
+  **PII de empleados** vía los servicios BioTime/Humand
+  (`Core/RHModels/`). Se instalaron 2 Rules (`sap-integration.md`,
+  `rrhh-datos-empleados.md`) y hooks en `.claude/settings.json` (modo
+  advertencia, probados manualmente a nivel de script — no dentro de una
+  sesión real de Claude Code todavía). El patrón de PII de RRHH se
+  generalizó de vuelta a `magia-framework/rules/example-pii-terceros-rrhh.md`
+  como tercer patrón de Rule, junto a `example-ai-features.md` y
+  `example-external-integration.md`.
+- **Sigue pendiente, sin poder simularse:** onboarding del equipo piloto,
+  y el primer ciclo de uso real de 3-5 días con reporte de fricciones.
 
 **Nota de calendario (2026-08-04):** el Sprint 1 se cerró el mismo día que
 el calendario alcanzó la semana 4 (inicio del Sprint 2 según
