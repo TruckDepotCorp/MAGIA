@@ -58,9 +58,11 @@ magia-framework/
 │   ├── 02-valor-y-adopcion.md      ← business value/adoption layer (parallel, not a 6th pillar)
 │   └── 03-gobernanza-repositorio.md← how this repo is versioned/distributed
 ├── claude-md/base.md               ← CLAUDE.md TEMPLATE for product repos (not this repo's own CLAUDE.md)
-├── rules/                          ← example/canonical Rules (copied to a product repo's .claude/rules/)
-└── skills/                         ← canonical Skills (copied to a product repo's .claude/skills/)
-    └── elegir-patron-ia/SKILL.md
+├── core/                           ← Core inmutable que se instala en .magia/core/ (Constitución, R1–R9, hooks, scripts)
+├── rules/                          ← example/canonical path-scoped Rules (copied to a product repo's .claude/rules/)
+├── skills/                         ← canonical Skills (copied to a product repo's .claude/skills/)
+│   └── elegir-patron-ia/SKILL.md
+├── agents/  commands/  templates/  ← subagentes, comandos /magia-* (incl. /magia-instalar) y plantillas instalables
 ```
 
 ## Architecture / mental model
@@ -89,6 +91,14 @@ release tag. Changes here never auto-propagate to product repos — each one
 decides when to re-copy a newer version (see `docs/03-gobernanza-repositorio.md`).
 
 ## Conventions for editing this repo
+
+- **Bash scripts in `core/` are the one exception to "no code here":** they
+  ship to product repos. After editing `core/hooks/*.sh` or
+  `core/scripts/check.sh`, run `bash -n` and re-test with simulated hook
+  JSON before changelog. Keep them LF (`.gitattributes`). Hook syntax was
+  verified against the official docs on 2026-10-05; re-verify if it changes.
+- `docs/referencia-spec/` is the imported handoff (target design). Do not
+  edit it; adapted decisions live in `docs/11` §4.
 
 - **Every change to `docs/`, `claude-md/`, `rules/`, or `skills/` needs a
   `CHANGELOG.md` entry** (Keep a Changelog format) and, where warranted, a

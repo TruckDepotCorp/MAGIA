@@ -1,5 +1,6 @@
 ---
 scope: "[por definir: carpeta real de modelos/servicios de RRHH del repo — ej. Core/RHModels/**,Core/Services/*Humand*.cs]"
+paths: "[por definir: carpeta real de modelos/servicios de RRHH del repo — ej. Core/RHModels/**,Core/Services/*Humand*.cs]"  # campo que Claude Code usa para cargar la Rule por ruta (scope se conserva por compatibilidad)
 owner: "[por definir]"
 version: "0.1.0"
 source: "generalizado a partir de HIPERSAP (.claude/rules/rrhh-datos-empleados.md), primer caso real de este patrón"

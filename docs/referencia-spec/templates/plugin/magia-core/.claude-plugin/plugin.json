@@ -1,0 +1,7 @@
+{
+  "name": "magia-core",
+  "version": "1.0.0",
+  "description": "MAGIA Core — Marco de Arquitectura y Gobernanza de IA de Truck Depot Corporation: Constitución, comandos /magia-*, subagentes, Skills Core, hooks de Rules R1–R9 y servidores MCP aprobados.",
+  "author": { "name": "Truck Depot Corporation — Arquitectura de IA" },
+  "license": "Propietario — Truck Depot Corporation. Uso interno."
+}

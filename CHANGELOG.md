@@ -73,10 +73,128 @@ Este proyecto usa versionado semántico (ver `docs/03-gobernanza-repositorio.md`
   las organizaciones líderes en IA). Sin métricas inventadas — se
   refuerza el mismo hallazgo real ya documentado.
 
+### Agregado (2026-10-05) — integración del paquete de handoff (propuesto como v0.3.0)
+
+Decisiones del usuario: instalación por **kit + instalador Claude Code**
+(sin CLI), enforcement **híbrido** por severidad, y alcance **núcleo ahora,
+resto como roadmap**. El VERSION sigue en `0.2.0`: el corte de release a
+0.3.0 (MINOR: nuevas Skills y Reglas) lo decide el comité al aprobar el PR.
+
+- `core/`: `CONSTITUCION.md`, `REGLAS-CORE.md` (R1–R9 con severidad dura/
+  blanda y mecanismo de cumplimiento real hoy vs. objetivo),
+  `proveedores-aprobados.txt` (los 4 aprobados del 2026-08-04),
+  `magia.config.schema.json`, `scripts/check.sh` (`check` | `lock` | `gate`,
+  equivalente sin CLI de `magia check`/`gate`) y `hooks/` (movidos desde
+  `templates/hooks/`): `guard-read`, `guard-write`, `scan-secrets`,
+  `guard-bash`, `session-start`, `stop-gate`, más los dos hooks de v0.2.0
+  actualizados.
+- Skills: `magia-context`, `magia-verify`, `magia-evals`,
+  `magia-data-shield`, `magia-grounding`, `magia-red-team`,
+  `magia-diligencia`. Owner provisional José Alonso, pendiente de confirmar.
+- `agents/` (nuevo): `magia-planner`, `magia-reviewer`, `magia-security`,
+  `magia-fixer`. `commands/` (nuevo): `/magia-instalar` (agente instalador),
+  `/magia-brief`, `/magia-spec`, `/magia-plan`, `/magia-review`,
+  `/magia-eval`, `/magia-gate`.
+- `templates/`: `MAGIA.md`, `magia.config.example.json`,
+  `declaracion-diligencia.md`, `plan-de-delegacion.md`, `descripcion-3p.md`,
+  `prompt-template.example.md`, `adopcion-30-dias.md`, `diario/` (contexto de
+  área, ficha de workflow, política de uso de IA), `evals/` (golden set de
+  ejemplo), `rubrics/rubrica-base.md`.
+- `docs/11-instalacion-y-perfiles.md`, `docs/12-marcos-anthropic-aplicados.md`,
+  `docs/13-roadmap-motor-de-valor.md`, y `docs/referencia-spec/` (copia
+  íntegra del handoff con `LEEME-ESTADO.md`: es diseño objetivo, no
+  configuración vigente).
+- `.gitattributes`: `*.sh` y `core/**` con LF.
+
+### Cambiado (2026-10-05)
+- `claude-md/base.md`: importa `@MAGIA.md`, referencia el Core, agrega
+  protocolo de trabajo (modo plan, rebobinado, `magia-verify`) y decisiones
+  siempre humanas. Reglas de proveedores y riesgo sin cambios.
+- `templates/settings-hooks-referencia.json`: ahora incluye `permissions.deny`
+  (Edit **y** Write por separado) y los 6 eventos; hooks apuntan a
+  `.magia/core/hooks/`. Sintaxis verificada contra la documentación oficial
+  (2026-10-05).
+- `templates/ci-pipeline-referencia.yml`: workflow `magia-gate` unificado
+  (check, secretos, pruebas, evals condicionales, job agregador requerido).
+- `docs/05-matriz-riesgo.md`: niveles de autonomía NM-1…NM-4.
+  `docs/08`: umbrales de evals propuestos (pendientes de ratificar).
+  `docs/07`: estructura de plantilla de prompt. `docs/00` §5, `docs/03`,
+  `docs/01`: capas nuevas, gobernanza del Core y estado.
+- `README.md`, `CLAUDE.md`, `CONTEXTO-PARA-CLAUDE-CODE.md`: estructura y
+  adopción actualizadas.
+
+### Corregido (2026-10-05)
+- Las 3 Rules de `rules/` usaban solo `scope:`; la documentación oficial de
+  Claude Code carga Rules por ruta con `paths:`. Se agregó `paths:` (se
+  conserva `scope`). **Las Rules instaladas en HIPERSAP deberían revisarse**:
+  si usan solo `scope`, probablemente cargan siempre, no por ruta.
+- Hooks: lectura de JSON y rutas absolutas de Windows; hash del lock
+  independiente de CRLF/LF (`autocrlf`).
+
+### Instalación piloto v0.3.0 en HIPERSAP (2026-10-05)
+Primera prueba real del instalador (ejecutado a mano siguiendo `/magia-instalar`)
+en un **worktree aparte** (`C:\NET_PROJECTS\HIPERSAP-magia`, rama local
+`chore/adopt-magia-0.3.0` desde `4f0b4d2`, sin commit ni push) porque el árbol
+principal de HIPERSAP tenía cambios sin commitear. Config: riesgo Alto, NM-1,
+`aiInProduct=false`, enforcement `advertencia`. Migró v0.2.0 → v0.3.0: Core
+en `.magia/core/` con `magia.lock`, hooks nuevos (se retiraron los de
+`.claude/magia/hooks/`), 7 Skills, 4 agentes, 7 comandos, `paths:` en sus 2
+Rules, `MAGIA.md`, `CLAUDE.md` actualizado, workflow `magia-gate`.
+`check.sh`: 0 errores, 1 aviso (`CLAUDE.md` 152 líneas). Fricciones
+encontradas: `restringido.txt` quedó vacío a propósito (listar código de
+`RHModels/` bloquearía el trabajo normal); no hay proyecto de pruebas en la
+solución; el job de secretos de la plantilla (gitleaks) exige licencia en
+repos de organización.
+
+### Segunda tanda del handoff (2026-10-05)
+- Agentes `magia-documenter` (Paquete de Evidencia y docs a partir del reporte
+  de `magia-verify`) y `magia-evaluator` (evals independientes, etiquetado de
+  fallas, casos propuestos; lo invoca `/magia-eval`). Ya son 6 agentes.
+- `templates/ci-revision-pr.yml`: revisión automática de PRs con
+  `anthropics/claude-code-action@v1` (sintaxis verificada en la doc oficial;
+  `actions/checkout@v6` marcado [VERIFICAR]). Opcional, solo PRs del mismo
+  repo, no sustituye al gate. Envía el diff a la API: requiere confirmación del
+  comité en riesgo Alto. **No activada en HIPERSAP.**
+- `templates/rubrics/ux.md`: rúbrica de UX (AF3) para repos con interfaz.
+- `check.sh` valida: `permissions.defaultMode` frente a la autonomía
+  (`bypassPermissions`/`dontAsk` = error; `acceptEdits`/`auto` por encima
+  del NM = aviso) y, en `docs/magia/delegation.md`, que toda tarea en modo
+  agencia declare cómo se verifica y que agencia exija NM-2+. Probado en el
+  repo temporal simulado.
+- HIPERSAP (rama `chore/adopt-magia-0.3.0`, commit `14bf3d6`): sincronizado con lo anterior.
+
+### Pendiente / no validado (2026-10-05)
+- Sin probar dentro de una sesión real de Claude Code, ni el instalador sobre
+  un repo real, ni el workflow en GitHub Actions. Probado a nivel de script
+  en un repo temporal simulado.
+- Sin plugin ni `marketplace.json`: el esquema no está confirmado en la
+  documentación oficial. `stop_hook_active` tampoco: `stop-gate.sh` usa su
+  propia guarda anti-bucle.
+- Decisiones D1, D4–D11 del handoff siguen abiertas (`docs/13`).
+
+### Agregado (2026-08-10)
+- **Spike técnico de "Copiloto embebido" ejecutado** (`docs/07-arquitectura-referencia.md`
+  §5.1), tarea 3 del Sprint 2 — 5 llamadas reales vía Claude Code CLI en
+  modo `--print` (`--system-prompt` propio, `--tools ""`, `--model sonnet`,
+  `--output-format json`) simulando sugerencias de copiloto que un humano
+  aprueba/descarta. Alcance genérico (sin atar a WMS/HIPERSAP, decisión
+  explícita). Métricas reales del propio sistema de facturación, no
+  estimadas: costo promedio $0.0241/request, $0.12 total la corrida,
+  latencia promedio `duration_api_ms` 8,485 ms / `ttft_ms` 5,230 ms, 0
+  fallos en la muestra. Hallazgo no anticipado: cada llamada independiente
+  paga cache-creation completo (sin reuso entre requests) más una llamada
+  oculta a un modelo Haiku (clasificador interno del CLI) — ninguna de las
+  dos la pagaría una integración directa vía API/SDK, así que el número
+  medido es un techo, no el costo esperado en producción. Se actualizó el
+  criterio de aceptación del Sprint 2 en `docs/01-plan-tecnico-fase1.md`
+  a **parcial** (falta el spike de Agente/MCP y de RAG, y repetir este
+  spike atado a un caso real).
+
 ### Pendiente
-- Spike técnico con métricas reales de latencia/costo (Sprint 2) —
-  requiere un caso de uso de producto real; ningún proyecto lo tiene
-  todavía.
+- Spike técnico de **Agente con herramientas/MCP** y de **RAG** (Sprint 2)
+  — no ejecutados todavía.
+- Repetir el spike de Copiloto embebido atado a un caso de negocio real
+  (WMS o HIPERSAP), no solo genérico.
 - Elegir/construir el framework de evals concreto y generar el primer
   golden dataset real (Sprint 3).
 - Ejecutar `templates/ci-pipeline-referencia.yml` contra un repo real.

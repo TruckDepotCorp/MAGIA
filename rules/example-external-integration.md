@@ -1,5 +1,6 @@
 ---
 scope: "**/Integration*/**,**/SAP*/**,**/*ServiceLayer*/**"
+paths: "**/Integration*/**,**/SAP*/**,**/*ServiceLayer*/**"  # campo que Claude Code usa para cargar la Rule por ruta (scope se conserva por compatibilidad)
 owner: "[por definir]"
 version: "0.1.0"
 ---

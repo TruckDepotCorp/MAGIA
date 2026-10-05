@@ -1,55 +1,67 @@
-# Pipeline CI de referencia — Sprint 3 (docs/01-plan-tecnico-fase1.md)
+# Pipeline CI de referencia de MAGIA (v0.3.0) — GitHub Actions.
+# Coherente con docs/06-stack-tecnico.md (GitHub + GitHub Actions). Copiar a
+# .github/workflows/magia-gate.yml del repo y adaptar lo marcado [ADAPTAR].
 #
-# Plantilla de GitHub Actions para repos con features de IA (coherente con
-# docs/06-stack-tecnico.md: GitHub + GitHub Actions ya es el CI/CD real de
-# la empresa). Copiar a .github/workflows/ en el repo que la adopte y
-# adaptar los pasos marcados con [ADAPTAR].
+# Regla R5: marcar el job `magia-gate` como check REQUERIDO en la protección
+# de la rama principal (Settings > Branches). Sin eso, el gate es decorativo.
 #
-# Pendiente explícito (ver docs/08-estandares-desarrollo.md): esta
-# plantilla no se ha corrido todavía punta a punta contra un golden
-# dataset real — eso requiere el primer caso de uso real de producto.
-# Se entrega como estructura de referencia, no como pipeline validado.
+# Estado: la lógica de check.sh está probada a nivel de script; este workflow
+# NO se ha corrido todavía en un repo real (pendiente del primer ciclo de uso).
 
-name: ai-governance-checks
+name: magia-gate
 
 on:
   pull_request:
-    paths:
-      - "**/ai/prompts/**"
-      - "**/ai-features/**"
+  push:
+    branches: [main, master]
 
 jobs:
-  lint-prompts:
-    name: Lint de prompts
+  magia-check:
+    name: MAGIA check (Core, Skills, contexto)
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      # [ADAPTAR] Reemplazar por el linter real de prompts del repo:
-      # formato esperado, longitud máxima, variables requeridas presentes.
-      - name: Lint de formato y variables de prompts
-        run: echo "TODO - [ADAPTAR] correr el linter de prompts del repo"
+      - name: Validar instalación MAGIA
+        run: bash .magia/core/scripts/check.sh
 
-  security-gate:
-    name: Gate de seguridad (secretos / PII)
+  secrets:
+    name: Escaneo de secretos (R6)
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      # [ADAPTAR] Bloquear el merge si se detectan credenciales, tokens o
-      # datos reales de clientes en prompts/fixtures versionados. Puede
-      # apoyarse en un scanner de secretos existente (ej. gitleaks) más
-      # una revisión de patrones de PII propia del dominio.
-      - name: Escanear credenciales y PII en prompts/fixtures
-        run: echo "TODO - [ADAPTAR] correr el scanner de secretos/PII"
+        with: { fetch-depth: 0 }
+      # [ADAPTAR] Scanner de secretos de la empresa; gitleaks como ejemplo.
+      - uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  tests:
+    name: Pruebas del repo
+    runs-on: ubuntu-latest   # [ADAPTAR] windows-latest si el build lo exige (.NET Framework)
+    steps:
+      - uses: actions/checkout@v4
+      # [ADAPTAR] setup del stack y comando de commands.test de magia.config.json.
+      - name: Pruebas
+        run: echo "TODO - [ADAPTAR] ejecutar el comando de pruebas del repo"
 
   evals:
-    name: Evals contra golden dataset
+    name: Evals de IA (solo si aiInProduct=true)
     runs-on: ubuntu-latest
-    needs: [lint-prompts, security-gate]
+    needs: [magia-check]
     steps:
       - uses: actions/checkout@v4
-      # [ADAPTAR] Correr el golden dataset de evals del repo (ver
-      # rules/example-ai-features.md) y fallar el build si hay regresión.
-      # No existe todavía un golden dataset real en ningún repo — este
-      # paso queda como placeholder hasta el primer caso de uso real.
-      - name: Correr evals
-        run: echo "TODO - [ADAPTAR] correr el golden dataset de evals"
+      - name: Evals contra el golden set
+        run: |
+          if grep -q '"aiInProduct"[[:space:]]*:[[:space:]]*true' magia.config.json; then
+            echo "TODO - [ADAPTAR] ejecutar commands.eval; fallar ante regresión o bajo umbral"
+            # Las llaves de proveedor se inyectan desde secrets del vault corporativo (R6), nunca en el repo.
+          else
+            echo "aiInProduct=false: sin evals de producto."
+          fi
+
+  magia-gate:
+    name: magia-gate (requerido para merge)
+    runs-on: ubuntu-latest
+    needs: [magia-check, secrets, tests, evals]
+    steps:
+      - run: echo "Gate en verde. La aprobación humana del PR (Paquete de Evidencia) sigue siendo obligatoria."

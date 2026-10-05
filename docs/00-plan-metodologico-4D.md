@@ -231,6 +231,15 @@ MAGIA mapea a una capa distinta:
 | **`.claude/skills/`** (paquetes con `SKILL.md`) | Solo cuando la tarea calza | Arquitectura de referencia + Catálogo de capacidades | Skill "elegir-patron-ia" que aplica tu matriz de decisión (RAG vs. agente vs. prompting simple); skill "generar-componente-ia" que sigue tu patrón aprobado |
 | **Hooks (`settings.json`)** | En puntos fijos del ciclo (pre/post tool-use) | Ciclo de vida y diligencia | Hook que bloquea un commit si no pasó el checklist de diligencia; hook que corre linters/tests tras cada edición |
 
+> **Actualización 2026-10-05 (v0.3.0 en curso):** a las cuatro capas se
+> suman **subagentes** (`.claude/agents/`, revisores y planificadores con
+> contexto aislado) y **comandos** (`.claude/commands/`, ej. `/magia-gate`),
+> y el núcleo inmutable (`.magia/core/`: Constitución, Reglas Core R1–R9,
+> hooks y scripts) que protege `magia.lock`. Detalle en
+> `docs/11-instalacion-y-perfiles.md`; las Reglas Core en `core/REGLAS-CORE.md`.
+> La skill `skill-creator` sí aparece en la lista de skills de algunos
+> entornos (`anthropic-skills:skill-creator`): úsala si está disponible.
+
 **Regla práctica para decidir dónde va cada regla de MAGIA:**
 - ¿Debe cumplirse siempre, sin excepción, en todo el repo? → `CLAUDE.md`.
 - ¿Solo aplica a cierta carpeta o tipo de archivo? → `.claude/rules/`.
@@ -238,7 +247,10 @@ MAGIA mapea a una capa distinta:
   un patrón, redactar una ficha de caso de uso, correr el checklist de
   compuertas)? → una **Skill**.
 - ¿Debe ejecutarse automáticamente sin que nadie lo pida, como control de
-  seguridad? → un **hook**.
+  seguridad? → un **hook**. Si una regla es innegociable, no se escribe
+  como sugerencia en `CLAUDE.md`: el texto explica, el hook obliga.
+- ¿Necesita un revisor independiente con contexto limpio (revisión, plan,
+  seguridad)? → un **subagente**.
 
 Para la construcción técnica de cada Skill (estructura de carpeta, `SKILL.md`,
 scripts de apoyo, evaluación de qué tan bien "dispara"), cuando lleguemos a esa

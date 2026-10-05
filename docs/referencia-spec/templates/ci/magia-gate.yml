@@ -1,0 +1,48 @@
+name: MAGIA Gate
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  magia-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 20 }
+      - run: npm ci
+      - run: npx magia check --json > magia-check.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: { name: magia-check, path: magia-check.json }
+
+  magia-eval:
+    needs: magia-check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 20 }
+      - run: npm ci
+      - run: npx magia eval --json > magia-eval.json
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}   # inyectado desde el vault corporativo (R6)
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: { name: magia-eval, path: magia-eval.json }
+
+  magia-gate:
+    needs: [magia-check, magia-eval]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 20 }
+      - run: npm ci
+      - run: npx magia gate
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+
+# Marcar "magia-gate" como check requerido en la protección de la rama main (Rule R5).

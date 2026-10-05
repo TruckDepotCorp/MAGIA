@@ -190,7 +190,7 @@ inmediato en vez de esperar al orden formal de sprints:
   no está disponible en este entorno** (no aparece en la lista de skills
   invocables de la sesión), a diferencia de lo que asumía
   `CONTEXTO-PARA-CLAUDE-CODE.md` §7 originalmente.
-- `templates/settings-hooks-referencia.json` + `templates/hooks/*.sh`
+- `templates/settings-hooks-referencia.json` + `templates/hooks/*.sh` (hoy en `core/hooks/`)
   (tarea 4): hooks de referencia en modo advertencia (no bloqueo duro, a
   propósito — ver riesgos técnicos del Sprint 4 en
   `docs/01-plan-tecnico-fase1.md`). No probados contra una sesión real de
@@ -210,6 +210,19 @@ inmediato en vez de esperar al orden formal de sprints:
   `example-external-integration.md`.
 - **Sigue pendiente, sin poder simularse:** onboarding del equipo piloto,
   y el primer ciclo de uso real de 3-5 días con reporte de fricciones.
+
+**Integración del paquete de handoff — 2026-10-05:** el usuario aportó
+`MAGIA_ Marco de Arquitectura de IA.zip` (SPEC v1.0 + 7 módulos + 27
+plantillas, de un diseño paralelo de MAGIA como paquete npm). Decisiones del
+usuario: (1) instalación por **kit + instalador Claude Code** (`/magia-instalar`),
+sin CLI; (2) enforcement **híbrido** (duro en secretos/.env/Core/deploy sin
+gate; el resto advierte hasta `enforcement: bloqueo`); (3) **núcleo ahora**,
+Motor de Valor/Flow/Forge/Registro/runtime como roadmap. Resultado: `core/`,
+7 Skills `magia-*`, `agents/`, `commands/`, plantillas, `docs/11`–`13` y
+`docs/referencia-spec/`. Ver `CHANGELOG.md` [Unreleased]. Hallazgos a tener
+presentes: las Rules deben usar `paths:` (las de HIPERSAP quizá solo
+`scope:`); el hash del lock ignora CR por `autocrlf`; sin probar aún en
+sesión real. Owners de los artefactos nuevos: José Alonso, provisional.
 
 **Nota de calendario (2026-08-04):** el Sprint 1 se cerró el mismo día que
 el calendario alcanzó la semana 4 (inicio del Sprint 2 según

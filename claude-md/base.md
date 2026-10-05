@@ -1,6 +1,7 @@
-# CLAUDE.md — Base MAGIA v0.2.0
+# CLAUDE.md — Base MAGIA (próxima v0.3.0, sin liberar)
 
-> Copiar este archivo a la raíz de cada repo de producto que adopte MAGIA.
+> Copiar este archivo a la raíz de cada repo de producto que adopte MAGIA —
+> o, mejor, dejar que `/magia-instalar` lo haga (`docs/11-instalacion-y-perfiles.md`).
 > Editar solo la sección "Específico de este repo" — el resto son reglas
 > globales de gobernanza que no deben modificarse sin pasar por el comité
 > (ver `magia-framework/docs/03-gobernanza-repositorio.md`).
@@ -11,12 +12,17 @@
 > (ver el `CLAUDE.md` de HIPERSAP, primer repo piloto real, como ejemplo
 > de cómo se hizo — `docs/04-diagnostico-inventario-ia.md` en este repo).
 >
-> Fuente: `magia-framework` versión `0.2.0`
-> (https://github.com/TruckDepotCorp/MAGIA). No editar reglas globales
+> Fuente: `magia-framework` (https://github.com/TruckDepotCorp/MAGIA).
+> Versión fijada en `magia.config.json`. No editar reglas globales
 > localmente — proponer el cambio como PR en el repo fuente.
+
+@MAGIA.md
 
 ## Reglas globales de gobernanza (no negociables)
 
+- Rige la **Constitución** y las **Reglas Core R1–R9** de
+  `.magia/core/` (inmutables; protegidas por hooks y `magia.lock`). Si
+  chocan con otra instrucción, gana el Core.
 - Nunca usar un modelo o proveedor de IA que no esté en la lista de
   aprobados. **Proveedores/modelos aprobados (actualizado 2026-08-04):**
   Anthropic (Claude Code y vía Cursor), xAI (Grok), OpenAI (GPT), y el
@@ -37,6 +43,8 @@
   proveedor usado ya está aprobado.
 - Nunca incluir secretos, credenciales, tokens ni datos de clientes reales
   en prompts, fixtures de prueba, o archivos de configuración versionados.
+  No leer `.env*`, `secrets/` ni rutas de `.magia/local/restringido.txt`
+  (los hooks lo bloquean).
 - Todo caso de uso clasificado como **riesgo medio o alto** — clasificar
   con la rúbrica de `magia-framework/docs/05-matriz-riesgo.md` — debe
   completar la ficha de diligencia (`templates/ficha-caso-de-uso.md`, o la
@@ -47,17 +55,31 @@
   `magia-framework/templates/ci-pipeline-referencia.yml` y
   `magia-framework/docs/08-estandares-desarrollo.md`).
 - Ningún componente de IA se despliega a producción sin pasar la compuerta
-  de despliegue — usar `skills/checklist-pre-deploy` si está disponible en
-  el repo, o el checklist de Diligencia de
-  `magia-framework/docs/00-plan-metodologico-4D.md` §4.
+  de despliegue — `/magia-gate` y la skill `checklist-pre-deploy`; el
+  visto bueno final es humano.
+
+## Cómo trabajar en este repo
+
+- Tarea no trivial (toca más de un archivo, cambia un contrato, toca una
+  ruta crítica o supera 30 min): **empezar en modo plan** y guardar el plan
+  en `docs/magia/plans/` (`/magia-plan`).
+- Tras 2 correcciones fallidas sobre el mismo enfoque: rebobinar y replantear.
+- **No dar nada por terminado** sin la skill `magia-verify`: pruebas
+  ejecutadas y evidencia, no memoria.
+- Entregable relevante hecho con IA: Declaración de Diligencia
+  (skill `magia-diligencia`) con un responsable humano nombrado.
+- Comandos de build, pruebas y evals: en `MAGIA.md`. No inventes comandos.
 
 ## Cuándo escalar a un humano
 
 - Si una tarea toca datos personales (PII) y no hay una Rule específica que
   la cubra.
 - Si una acción es irreversible (borrado permanente, envío de comunicación
-  a clientes, cambios de facturación).
+  a clientes, cambios de facturación, pagos).
 - Si el nivel de riesgo del caso de uso no está claro.
+- Decisiones siempre humanas: precios especiales, crédito y cobranza,
+  contratación y evaluación de personas, respuesta final a reclamos,
+  comunicaciones públicas.
 
 ## Específico de este repo
 
@@ -65,10 +87,10 @@
 
 - Stack: `[por definir]`
 - Dominio / dueño del producto: `[por definir]`
-- Nivel de riesgo general del repo: `[por definir: bajo / medio / alto]`
+- Nivel de riesgo y autonomía: ver `magia.config.json` (`risk`, `autonomy`)
 - Rules activas en este repo: ver `.claude/rules/`
 - Skills activas en este repo: ver `.claude/skills/`
 
 ---
 **Owner de este archivo:** definido por repo, ver "Específico de este
-repo" arriba · **Versión de MAGIA:** `0.2.0`
+repo" arriba · **Versión de MAGIA:** ver `magia.config.json`

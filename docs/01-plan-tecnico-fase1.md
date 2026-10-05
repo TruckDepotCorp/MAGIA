@@ -115,9 +115,15 @@ software — no en abstracto, sino con un spike corriendo.
 - Repos de spike funcionando (aunque sea localmente o en ambiente de pruebas).
 
 ### Criterio de aceptación
-- [ ] Cada patrón elegido tiene un spike ejecutado, no solo documentado en teoría.
-- [ ] Existen métricas reales (aunque aproximadas) de costo y latencia por patrón.
-- [ ] El estándar de logging/observabilidad contempla el enmascarado de PII.
+- [~] Cada patrón elegido tiene un spike ejecutado, no solo documentado en
+  teoría — **parcial**: Copiloto embebido spikeado con datos reales
+  (2026-08-10, genérico, sin atar a WMS/HIPERSAP); Agente con
+  herramientas/MCP y RAG siguen sin spike. Ver `docs/07-arquitectura-referencia.md` §5.
+- [~] Existen métricas reales (aunque aproximadas) de costo y latencia por
+  patrón — **parcial**, mismo alcance que el punto anterior (solo Copiloto
+  embebido tiene número real hoy).
+- [x] El estándar de logging/observabilidad contempla el enmascarado de
+  PII — `docs/07-arquitectura-referencia.md` §4.
 
 ---
 
@@ -198,7 +204,7 @@ configuración viva dentro de un repo real, con un equipo usándola.
   `checklist-pre-deploy` (creadas a mano — `skill-creator` no está
   disponible en este entorno).
 - [x] Hooks básicos de referencia: `templates/settings-hooks-referencia.json`
-  + `templates/hooks/` — en **modo advertencia**, no bloqueo duro (a
+  + `templates/hooks/` (movido a `core/hooks/` en v0.3.0) — en **modo advertencia**, no bloqueo duro (a
   propósito, ver riesgos técnicos abajo).
 - [x] Repo piloto elegido informalmente: **HIPERSAP** — `CLAUDE.md`
   fusionado, skill `elegir-patron-ia` y ficha de diligencia instaladas,
@@ -213,6 +219,13 @@ configuración viva dentro de un repo real, con un equipo usándola.
   `settings.local.json`, que es personal), probados manualmente a nivel de
   script (exit 0, modo advertencia) — **no** probados aún dentro de una
   sesión real de Claude Code end-to-end.
+- [x] **Kit instalable v0.3.0 (2026-10-05)** — Core inmutable (Constitución,
+  R1–R9, `check.sh`, `magia.lock`), 7 Skills `magia-*`, 4 agentes, 7
+  comandos incluido `/magia-instalar`, hooks con enforcement híbrido
+  (probados a nivel de script), CI unificado. Incorpora el paquete de
+  handoff; ver `docs/11-instalacion-y-perfiles.md`. Motor de Valor y perfiles
+  Flow/Forge quedan en roadmap (`docs/13`). **Sin probar aún** dentro de una
+  sesión real de Claude Code ni sobre un repo real.
 - [ ] Onboarding del equipo piloto — no se ha hecho.
 - [ ] Primer ciclo de uso real (3-5 días) y reporte de fricciones — no
   se ha hecho; no se puede simular.

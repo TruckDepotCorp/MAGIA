@@ -85,6 +85,19 @@ documentadas en el repo que lo implementa.
   todo prompt nuevo o modificado necesita su golden dataset de evals
   asociado antes de mergear.
 
+- **Estructura de la plantilla de prompt (v0.3.0, de `referencia-spec/modules/CLAUDE-API.md`
+  API3):** frontmatter (`id`, `version`, `owner`, `taskClass`, `maxTokens`
+  explícito, `rules`), **prefijo estático primero** (rol, reglas,
+  instrucciones, ejemplos — es lo que se cachea) y **parte dinámica al
+  final** (documentos recuperados y entrada del usuario). Secciones en
+  etiquetas XML; todo contenido externo o del usuario va dentro de etiquetas
+  de datos con la indicación de que no son instrucciones (defensa contra
+  inyección de prompt). Plantilla: `templates/prompt-template.example.md`.
+- Workflow determinista por defecto; agente solo cuando los pasos no se
+  conocen de antemano, justificado con evals (patrón más simple primero).
+- Razonamiento extendido solo si los evals demuestran que el prompt ya
+  optimizado no alcanza el umbral.
+
 ### Logging / observabilidad
 - Registrar, por cada llamada a un modelo: patrón de arquitectura usado
   (tabla de la sección 1), proveedor/modelo, timestamp, resultado
@@ -97,12 +110,86 @@ documentadas en el repo que lo implementa.
 
 ## 5. Spikes técnicos (tarea 3 del Sprint 2)
 
-**Pendiente, y así se deja explícito:** un spike con métricas reales de
-latencia/costo/complejidad no se puede simular — necesita un caso de uso
-de producto concreto implementado en un repo de pruebas. En cuanto exista
-un candidato real (WMS, HIPERSAP, o cualquier otro), se ejecuta el spike
-del patrón correspondiente de la sección 2 y se documentan los resultados
-aquí. Esto no bloquea el resto del estándar de este documento.
+### 5.1 Copiloto embebido — ejecutado (2026-08-10)
+
+**Alcance de este spike:** genérico, sin atar a WMS ni HIPERSAP (decisión
+explícita al ejecutarlo) — valida que el patrón funciona técnicamente y da
+un primer número real de costo/latencia, **no** valida un caso de negocio
+concreto. Los otros dos patrones priorizados (Agente con herramientas/MCP,
+RAG) siguen sin spike — ver sección "Pendiente" abajo.
+
+**Método:** 5 llamadas independientes vía `claude -p` (Claude Code CLI en
+modo `--print`), cada una simulando una sugerencia de copiloto embebido que
+un usuario humano aprobaría o descartaría (no se ejecuta ninguna acción
+automática). Configuración pensada para acercarse a una integración real
+vía API/SDK, no al uso de Claude Code como herramienta de desarrollo:
+`--system-prompt` propio y corto (reemplaza el system prompt por defecto de
+Claude Code), `--tools ""` (sin herramientas de desarrollo), `--model
+sonnet` (modelo aprobado por el comité, ver `docs/00-plan-metodologico-4D.md`
+§1), `--output-format json` para capturar métricas exactas del propio
+sistema de facturación (no estimadas), `--no-session-persistence`. No se
+usó `--bare` porque ese modo exige `ANTHROPIC_API_KEY` explícita y este
+entorno se autentica distinto.
+
+**Escenarios corridos** (ejemplos genéricos de copiloto asistiendo a un
+humano en tareas de atención al cliente/operaciones):
+
+| # | Tarea | Costo (USD) | Tokens salida | `duration_api_ms` | `ttft_ms` |
+|---|---|---|---|---|---|
+| 1 | Sugerir respuesta a reclamo de cliente | $0.0216 | 251 | 8,402 | 7,024 |
+| 2 | Reescribir texto en tono formal | $0.0289 | 735 | 12,643 | 7,260 |
+| 3 | Sugerir asunto de correo (≤8 palabras) | $0.0184 | 29 | 4,399 | 2,889 |
+| 4 | Resumir incidencia para dashboard ejecutivo | $0.0211 | 178 | 4,379 | 1,775 |
+| 5 | Sugerir 3 próximos pasos ante una incidencia | $0.0304 | 831 | 12,601 | 7,202 |
+| **Promedio** | | **$0.0241** | **405** | **8,485 ms** | **5,230 ms** |
+
+Costo real total de la corrida completa: **$0.12 USD** (5 llamadas). Las 5
+terminaron `is_error: false` / `stop_reason: end_turn` — cero fallos en esta
+muestra chica.
+
+**Hallazgo de costo no anticipado (el que motivó ejecutar esto en vez de
+solo estimarlo):** cada llamada, aunque independiente y con un system
+prompt corto (~60 tokens), factura ~2,860-2,950 tokens de
+`cache_creation_input_tokens` — no hay reuso de caché entre llamadas
+porque cada invocación de `claude -p` es una sesión nueva. Además, cada
+llamada dispara una **segunda llamada oculta a un modelo Haiku**
+(clasificador interno de Claude Code, ~570-625 tokens de entrada, ~$0.0006-
+0.0007) que no aparece en el resultado visible, solo en el campo
+`modelUsage` de la respuesta JSON. Ninguna de las dos cosas la pagaría una
+integración que llame directo a la API/SDK de Anthropic desde el propio
+producto (sin pasar por el CLI de Claude Code) — **el costo real medido
+aquí es un techo, no el costo esperado de una implementación de
+producción**, y esa brecha en sí es un hallazgo del spike, no un error de
+medición.
+
+**Complejidad de mantenimiento (observada, no teórica):** para acercar el
+CLI a una llamada de API "limpia" hubo que fijar explícitamente
+`--system-prompt`, `--tools ""` y `--model` — sin eso, cada llamada carga
+el system prompt completo de Claude Code (~23k tokens de contexto de
+herramientas/memoria, ver ejemplo sin estos flags en el historial de este
+spike) y el costo se dispara ~10x. Una integración de producto real
+evitaría esto por diseño (llamada directa a la Messages API, sin pasar por
+Claude Code) — la complejidad real a mantener ahí es otra: mantener el
+propio system prompt versionado (ver convención de la sección 4) y el
+manejo de "sugerencia pendiente de aprobación humana" en la UI.
+
+**Puntos de fallo observados/esperados:** en el escenario 1, el modelo
+señaló explícitamente que no tenía acceso al sistema de pedidos y devolvió
+una sugerencia deliberadamente genérica en vez de inventar un estado de
+envío — comportamiento correcto para un copiloto (no automatiza sin dato
+real), pero implica que sin una integración de retrieval/contexto real
+(ver patrón RAG o Agente/MCP), el copiloto embebido queda limitado a texto
+genérico en tareas que dependen de datos propios — un punto de fallo de
+diseño, no de la API.
+
+### Pendiente
+
+- Spike de **Agente con herramientas/MCP** y de **RAG** — no ejecutados
+  todavía (los otros 2 patrones priorizados en la sección 2).
+- Repetir el spike de Copiloto embebido atado a un caso real (WMS o
+  HIPERSAP) para tener evidencia de negocio, no solo técnica — este spike
+  genérico no reemplaza esa validación.
+- Revisar la priorización de la sección 2 una vez existan los 3 spikes.
 
 ## 6. Diagramas de referencia
 

@@ -1,5 +1,6 @@
 ---
 scope: "src/ai-features/**"
+paths: "src/ai-features/**"  # campo que Claude Code usa para cargar la Rule por ruta (scope se conserva por compatibilidad)
 owner: "José Alonso"
 version: "0.1.0"
 ---

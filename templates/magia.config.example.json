@@ -1,0 +1,23 @@
+{
+  "version": "0.3.0",
+  "profile": "estandar",
+  "enforcement": "advertencia",
+  "project": {
+    "name": "[por definir: nombre del repo]",
+    "area": "[por definir]",
+    "owner": "[por definir: email del responsable]"
+  },
+  "risk": "medio",
+  "autonomy": "NM-1",
+  "customerFacing": false,
+  "aiInProduct": false,
+  "dataClasses": ["interno"],
+  "stack": { "languages": ["[por definir]"] },
+  "providers": ["anthropic"],
+  "commands": {
+    "build": "[por definir: comando de build]",
+    "test": "[por definir: comando de pruebas]",
+    "lint": "[por definir]",
+    "eval": "[por definir: solo si aiInProduct=true]"
+  }
+}

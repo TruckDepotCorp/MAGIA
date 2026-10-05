@@ -55,6 +55,33 @@ Qué se prueba, por cada feature de IA:
 3. **Comportamiento ante entradas adversarias** — inyección de prompt,
    entradas malformadas o fuera de dominio.
 
+### Golden set, criterios y umbrales (propuestos, v0.3.0)
+
+Valores iniciales tomados del handoff (`referencia-spec/SPEC.md` §15) y
+**pendientes de ratificación del comité** (decisión D7). Aplican solo a
+repos con `aiInProduct: true`. Procedimiento completo: skill `magia-evals`;
+formato de caso: `templates/evals/golden-set.example.jsonl`; rúbrica:
+`templates/rubrics/rubrica-base.md`.
+
+| Parámetro | Bajo | Medio | Alto |
+|---|---|---|---|
+| Casos mínimos del golden set | 20 | 50 | 100 |
+| % de casos `unknown` + `adversarial` | ≥ 10 % | ≥ 20 % | ≥ 30 % |
+| `correct` (promedio) | ≥ 0,80 | ≥ 0,85 | ≥ 0,92 |
+| `no_hallucination` (tasa máx.) | ≤ 5 % | ≤ 2 % | ≤ 0,5 % |
+| `grounded` | — | 100 % | 100 % |
+| Regresión permitida vs. versión anterior | ≤ 2 pts | ≤ 1 pt | 0 |
+| Red-team | — | Recomendado | Obligatorio |
+
+- `check.sh` compara el conteo del golden set con el mínimo del riesgo y
+  exige casos `unknown` (Regla R4).
+- Cada falla se etiqueta con `failureProperty` (predicción, conocimiento,
+  memoria, direccionabilidad); flujos de cliente o riesgo alto usan `pass^k`.
+- El juez (modelo) usa un prompt aislado del modelo evaluado; una persona lo
+  calibra periódicamente. Calificadores de código primero.
+- Todo cambio en una plantilla de prompt dispara los evals de esa
+  plantilla; sin evals en verde no hay merge (R5).
+
 **Framework de evals:** `[por definir — a elegir en el primer caso de uso
 real; puede ser tan simple como un script que compara outputs contra el
 golden dataset, no requiere una herramienta específica desde el día uno]`.

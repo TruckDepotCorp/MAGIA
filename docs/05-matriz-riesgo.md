@@ -57,3 +57,23 @@ Gamarro), 2026-08-04.
   aplicarla retroactivamente a WMS e HIPERSAP por estar en Medio/Alto.
 - Revisar si la rúbrica de 4 criterios cubre casos futuros con matices no
   contemplados aquí (ej. multi-tenant, datos de terceros no personales).
+
+## Nivel de autonomía (NM-1 … NM-4) — agregado en v0.3.0
+
+El criterio 2 de la rúbrica ("decide o actúa autónomamente sin revisión
+humana") se gradúa en cuatro niveles, tomados del handoff
+(`referencia-spec/SPEC.md` §16.2). Se registran en `magia.config.json`
+(`autonomy`) y determinan qué salvaguardas adicionales se instalan
+(`docs/11-instalacion-y-perfiles.md` §3). **No cambian la clasificación
+Bajo/Medio/Alto de arriba**; la complementan.
+
+| Nivel | Qué hace la IA | Salvaguardas adicionales | Aprobación |
+|---|---|---|---|
+| **NM-1 Asistente** | Sugiere; la persona ejecuta | Base (Core, `magia-verify`, `magia-data-shield`) | Responsable del repo |
+| **NM-2 Copiloto** | Ejecuta acciones reversibles | + `magia-grounding` si hay IA en el producto; `permissions.deny` y hooks activos | Responsable del repo |
+| **NM-3 Agente supervisado** | Flujos multi-paso con herramientas | + `magia-red-team`, confirmación humana en acciones irreversibles | Comité (consenso) |
+| **NM-4 Agente autónomo** | Sin aprobación por acción | + monitoreo en tiempo real y kill-switch `[por definir]` | Comité + excepción firmada; auditoría mensual |
+
+Los repos hoy clasificados (WMS = Medio, HIPERSAP = Alto) usan IA como
+asistente de desarrollo con revisión humana: **NM-1**. `[por definir:
+confirmar con el comité al instalar el kit en cada uno.]`

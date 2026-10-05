@@ -1,0 +1,29 @@
+{
+  "permissions": {
+    "deny": [
+      "Read(./.env)",
+      "Read(./.env.*)",
+      "Read(./**/secrets/**)",
+      "Edit(./.magia/core/**)",
+      "Edit(./magia.lock)",
+      "Write(./.magia/core/**)",
+      "Write(./magia.lock)"
+    ]
+  },
+  "hooks": {
+    "SessionStart": [
+      { "hooks": [{ "type": "command", "command": "npx magia hook session-start" }] }
+    ],
+    "PreToolUse": [
+      { "matcher": "Read|Grep|Glob", "hooks": [{ "type": "command", "command": "npx magia hook guard-read" }] },
+      { "matcher": "Write|Edit", "hooks": [{ "type": "command", "command": "npx magia hook guard-write" }] },
+      { "matcher": "Bash", "hooks": [{ "type": "command", "command": "npx magia hook guard-bash" }] }
+    ],
+    "PostToolUse": [
+      { "matcher": "Write|Edit", "hooks": [{ "type": "command", "command": "npx magia hook scan-secrets" }] }
+    ],
+    "Stop": [
+      { "hooks": [{ "type": "command", "command": "npx magia hook stop-gate --tests --check --evals-impacted --max-retries 3" }] }
+    ]
+  }
+}

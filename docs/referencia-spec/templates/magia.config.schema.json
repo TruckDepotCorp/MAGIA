@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://magia.truckdepot.internal/schemas/magia.config.schema.json",
+  "title": "magia.config.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["version", "profile", "project", "risk", "autonomy", "customerFacing", "dataClasses", "stack", "models", "skills", "thresholds", "telemetry"],
+  "properties": {
+    "version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
+    "profile": { "enum": ["flow", "estandar", "forge"] },
+    "lane": { "enum": ["produccion", "exploracion"] },
+    "project": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "area", "owner"],
+      "properties": {
+        "name": { "type": "string", "minLength": 2 },
+        "area": { "enum": ["tienda", "sitio", "sac", "marketing", "operaciones", "compras", "creditos-cobros", "contabilidad", "bi", "auditoria", "rrhh", "it", "otra"] },
+        "owner": { "type": "string", "format": "email" }
+      }
+    },
+    "risk": { "enum": ["bajo", "medio", "alto"] },
+    "autonomy": { "enum": ["NM-1", "NM-2", "NM-3", "NM-4"] },
+    "customerFacing": { "type": "boolean" },
+    "dataClasses": {
+      "type": "array", "minItems": 1, "uniqueItems": true,
+      "items": { "enum": ["publico", "interno", "confidencial", "restringido"] }
+    },
+    "stack": {
+      "type": "object",
+      "required": ["languages"],
+      "properties": {
+        "languages": { "type": "array", "items": { "type": "string" } },
+        "frameworks": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "models": {
+      "type": "object",
+      "required": ["allowed"],
+      "properties": { "allowed": { "type": "array", "minItems": 1, "items": { "type": "string" } } }
+    },
+    "skills": {
+      "type": "object",
+      "required": ["required"],
+      "properties": {
+        "required": { "type": "array", "items": { "type": "string", "pattern": "^magia-[a-z-]+$" } },
+        "extra": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "thresholds": {
+      "type": "object",
+      "properties": {
+        "correct": { "type": "number", "minimum": 0, "maximum": 1 },
+        "hallucinationMaxRate": { "type": "number", "minimum": 0, "maximum": 1 },
+        "groundedRate": { "type": "number", "minimum": 0, "maximum": 1 },
+        "brandVoice": { "type": "number", "minimum": 0, "maximum": 1 },
+        "latencyP95Ms": { "type": "integer", "minimum": 1 },
+        "costPerCallUsd": { "type": "number", "minimum": 0 },
+        "maxRegressionPts": { "type": "number", "minimum": 0 }
+      }
+    },
+    "mcp": {
+      "type": "object",
+      "properties": { "servers": { "type": "array", "items": { "type": "string" } } }
+    },
+    "telemetry": {
+      "type": "object",
+      "required": ["endpoint"],
+      "properties": { "endpoint": { "type": "string", "format": "uri" } }
+    },
+    "exceptions": { "type": "array", "items": { "type": "string", "pattern": "^EXC-\\d{4}-\\d{3}$" } }
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "magia.config.json",
+  "description": "Configuración declarativa de MAGIA en un repo de producto. Adaptada de la SPEC del handoff (docs/referencia-spec/templates/magia.config.schema.json) a lo que el kit valida hoy con check.sh.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["version", "profile", "project", "risk", "autonomy", "customerFacing", "aiInProduct", "providers", "commands"],
+  "properties": {
+    "version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$", "description": "Versión de magia-framework fijada al instalar (tag)." },
+    "profile": { "enum": ["diario", "flow", "estandar", "forge"], "description": "Hoy solo 'estandar' es instalable; el resto son perfiles en roadmap (docs/13)." },
+    "enforcement": { "enum": ["advertencia", "bloqueo"], "default": "advertencia" },
+    "project": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "owner"],
+      "properties": {
+        "name": { "type": "string", "minLength": 2 },
+        "area": { "type": "string", "description": "Texto libre; los presets por área quedan como [por definir]." },
+        "owner": { "type": "string", "description": "Responsable humano nombrado (email)." }
+      }
+    },
+    "risk": { "enum": ["bajo", "medio", "alto"], "description": "Según la rúbrica de docs/05-matriz-riesgo.md. Puede subirse; bajarlo exige excepción." },
+    "autonomy": { "enum": ["NM-1", "NM-2", "NM-3", "NM-4"] },
+    "customerFacing": { "type": "boolean" },
+    "aiInProduct": { "type": "boolean", "description": "true si el software llama a un modelo en producción (activa R1, R4, R7 y los evals)." },
+    "dataClasses": { "type": "array", "uniqueItems": true, "items": { "enum": ["publico", "interno", "confidencial", "restringido"] } },
+    "stack": { "type": "object", "properties": { "languages": { "type": "array", "items": { "type": "string" } }, "frameworks": { "type": "array", "items": { "type": "string" } } } },
+    "providers": { "type": "array", "minItems": 1, "items": { "type": "string" }, "description": "Ids de core/proveedores-aprobados.txt que usa este repo (R3)." },
+    "commands": {
+      "type": "object",
+      "description": "Comandos reales del repo; '[por definir: ...]' si aún no existen.",
+      "properties": {
+        "build": { "type": "string" }, "test": { "type": "string" },
+        "lint": { "type": "string" }, "eval": { "type": "string" }
+      }
+    },
+    "thresholds": {
+      "type": "object",
+      "description": "Opcionales; valores iniciales propuestos en docs/08, pendientes de ratificación del comité.",
+      "properties": {
+        "correct": { "type": "number", "minimum": 0, "maximum": 1 },
+        "hallucinationMaxRate": { "type": "number", "minimum": 0, "maximum": 1 },
+        "groundedRate": { "type": "number", "minimum": 0, "maximum": 1 },
+        "maxRegressionPts": { "type": "number", "minimum": 0 }
+      }
+    },
+    "exceptions": { "type": "array", "items": { "type": "string", "pattern": "^EXC-\\d{4}-\\d{3}$" } }
+  }
+}

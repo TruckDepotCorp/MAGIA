@@ -36,6 +36,13 @@ en sus propios repos.
 12. **`docs/10-resumen-ejecutivo-gerencia.md`** — resumen para Gerencia:
     qué impacto y potencial tiene MAGIA, sin detalle técnico ni nombres de
     proyecto.
+13. **`docs/11-instalacion-y-perfiles.md`** — cómo se instala MAGIA en un
+    repo (`/magia-instalar`), capas Core/Local/Generada, qué se instala
+    según riesgo y autonomía, y decisiones de adaptación del handoff.
+14. **`docs/12-marcos-anthropic-aplicados.md`** — marcos de Anthropic
+    convertidos en requisitos y dónde vive cada uno.
+15. **`docs/13-roadmap-motor-de-valor.md`** — lo definido en el handoff que
+    aún no se instala (pipeline autónomo, Registro, Flow, Forge, runtime).
 
 ## Estructura
 
@@ -45,16 +52,19 @@ magia-framework/
 ├── CONTEXTO-PARA-CLAUDE-CODE.md
 ├── CHANGELOG.md
 ├── VERSION
-├── docs/
+├── docs/                 (incluye referencia-spec/: handoff como diseño objetivo)
 ├── claude-md/base.md
-├── rules/
-├── skills/
+├── core/                 Constitución, Reglas R1–R9, hooks, scripts (se instala inmutable)
+├── rules/                Rules por ruta de ejemplo
+├── skills/               elegir-patron-ia, ficha-caso-de-uso, checklist-pre-deploy, magia-*
+├── agents/               magia-planner, -reviewer, -security, -fixer, -documenter, -evaluator
+├── commands/             /magia-instalar, -brief, -spec, -plan, -review, -eval, -gate
 └── templates/
 ```
 
 ## Estado actual
 
-Versión `0.2.0` — Sprint 1 cerrado el 2026-08-04, con un pendiente en la
+Versión `0.2.0` (v0.3.0 en [Unreleased]: kit instalable + Core R1–R9, ver `CHANGELOG.md`) — Sprint 1 cerrado el 2026-08-04, con un pendiente en la
 capa de valor (paralela, no bloqueante — ver
 `docs/02-valor-y-adopcion.md`). Sprints 2, 3 y 4 avanzados en paralelo:
 estándar de arquitectura, estándares de desarrollo, catálogo de
@@ -68,17 +78,23 @@ completo.
 
 ## Cómo adoptar MAGIA en un repo de producto
 
-1. Copiar `claude-md/base.md` → `CLAUDE.md` en la raíz del repo. Si el repo
-   **ya tiene** un `CLAUDE.md` con documentación técnica propia:
-   **fusionar, no reemplazar** (ver el `CLAUDE.md` de HIPERSAP como
-   ejemplo real). Completar la sección "Específico de este repo".
-2. Copiar las Rules que apliquen de `rules/` → `.claude/rules/` del repo,
-   **adaptando el `scope`** a la estructura real (los `scope` de este repo
-   son ejemplos genéricos, no rutas literales a copiar sin revisar).
-3. Copiar las Skills que apliquen de `skills/` → `.claude/skills/` del repo.
-4. Copiar los hooks de `templates/settings-hooks-referencia.json` a
-   `.claude/settings.json` si se quiere activar el modo advertencia de
-   diligencia — verificar la sintaxis de hooks vigente en la documentación
-   oficial de Claude Code antes de confiar en la plantilla.
-5. Registrar en el `CLAUDE.md` copiado qué versión de `magia-framework` se
-   está usando (tag/release).
+**Camino rápido (recomendado):** clonar este repo y, desde Claude Code en el
+repo de producto, pedir: *"Lee `<ruta>/commands/magia-instalar.md` y
+ejecútalo con `<ruta>`"*. El agente instalador escanea el repo, clasifica
+el riesgo con la rúbrica de `docs/05`, hace una ronda de preguntas y genera
+en una rama (sin push): `CLAUDE.md` fusionado + `MAGIA.md`,
+`magia.config.json`, Core inmutable en `.magia/core/` con `magia.lock`,
+Skills/agentes/comandos adaptados al código real, Rules con rutas reales,
+hooks y permisos en `.claude/settings.json`, y el workflow `magia-gate`.
+Detalle y límites: `docs/11-instalacion-y-perfiles.md`.
+
+**Camino manual:** copiar `claude-md/base.md` → `CLAUDE.md` (fusionar, no
+reemplazar), `core/` → `.magia/core/` (y `bash .magia/core/scripts/check.sh lock`),
+las Skills/agentes/comandos que apliquen → `.claude/`, las Rules con su
+`paths:` adaptado, y `templates/settings-hooks-referencia.json` fusionado
+en `.claude/settings.json`. Agregar a `.gitattributes`: `*.sh text eol=lf`.
+
+En ambos casos: registrar la versión de `magia-framework` usada
+(`magia.config.json`), proteger la rama principal exigiendo el check
+`magia-gate`, y revisar que los hooks funcionen en una sesión real antes de
+subir a `bloqueo`.

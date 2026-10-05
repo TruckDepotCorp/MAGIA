@@ -1,25 +1,59 @@
 {
-  "_comment": "Plantilla de hooks del Sprint 4 (docs/01-plan-tecnico-fase1.md). Copiar el bloque 'hooks' a .claude/settings.json del repo que la adopte. Empieza en modo ADVERTENCIA, no bloqueo duro (ver docs/01, sección de riesgos técnicos: 'hooks demasiado agresivos desde el día uno pueden generar rechazo al marco'). Verificar la sintaxis vigente de hooks en la documentación oficial de Claude Code antes de confiar en esto en un repo real — la mecánica puede evolucionar (ver docs/00-plan-metodologico-4D.md §5).",
+  "_comment": "Plantilla de .claude/settings.json de MAGIA v0.3 (sintaxis verificada contra la documentación oficial de Claude Code el 2026-10-05). FUSIONAR con el settings.json existente del repo, nunca reemplazarlo: agregar estas reglas a permissions.deny y estos bloques a hooks. Los hooks viven en .magia/core/hooks/ (Core inmutable). Enforcement híbrido: las violaciones 'duras' bloquean siempre; las 'blandas' solo avisan hasta que el repo ponga enforcement=bloqueo en magia.config.json (core/REGLAS-CORE.md). Edit y Write son herramientas distintas en permissions: se deniegan ambas.",
+  "permissions": {
+    "deny": [
+      "Read(./.env)",
+      "Read(./.env.*)",
+      "Read(./**/secrets/**)",
+      "Edit(./.magia/core/**)",
+      "Write(./.magia/core/**)",
+      "Edit(./magia.lock)",
+      "Write(./magia.lock)",
+      "Edit(./.magia/reports/gate.json)",
+      "Write(./.magia/reports/gate.json)"
+    ]
+  },
   "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          { "type": "command", "command": "bash \"$CLAUDE_PROJECT_DIR/.magia/core/hooks/session-start.sh\"" }
+        ]
+      }
+    ],
     "PreToolUse": [
       {
-        "matcher": "Edit|Write",
+        "matcher": "Read|Grep|Glob",
         "hooks": [
-          {
-            "type": "command",
-            "command": "bash templates/hooks/check-sensitive-files.sh"
-          }
+          { "type": "command", "command": "bash \"$CLAUDE_PROJECT_DIR/.magia/core/hooks/guard-read.sh\"" }
+        ]
+      },
+      {
+        "matcher": "Write|Edit|MultiEdit",
+        "hooks": [
+          { "type": "command", "command": "bash \"$CLAUDE_PROJECT_DIR/.magia/core/hooks/guard-write.sh\"" }
+        ]
+      },
+      {
+        "matcher": "Bash",
+        "hooks": [
+          { "type": "command", "command": "bash \"$CLAUDE_PROJECT_DIR/.magia/core/hooks/guard-bash.sh\"" }
         ]
       }
     ],
     "PostToolUse": [
       {
-        "matcher": "Edit|Write",
+        "matcher": "Write|Edit|MultiEdit",
         "hooks": [
-          {
-            "type": "command",
-            "command": "bash templates/hooks/run-evals-if-relevant.sh"
-          }
+          { "type": "command", "command": "bash \"$CLAUDE_PROJECT_DIR/.magia/core/hooks/scan-secrets.sh\"" },
+          { "type": "command", "command": "bash \"$CLAUDE_PROJECT_DIR/.magia/core/hooks/run-evals-if-relevant.sh\"" }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          { "type": "command", "command": "bash \"$CLAUDE_PROJECT_DIR/.magia/core/hooks/stop-gate.sh\"" }
         ]
       }
     ]

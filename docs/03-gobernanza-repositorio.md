@@ -17,9 +17,16 @@ magia-framework/
 ├── VERSION
 ├── docs/                          ← pilares, planes, políticas (markdown)
 ├── claude-md/base.md              ← plantilla de CLAUDE.md para cada repo de producto
-├── rules/                         ← Rules de ejemplo/base por dominio
-└── skills/                        ← Skills canónicas de MAGIA
+├── core/                          ← Core inmutable: Constitución, Reglas R1–R9, hooks, scripts
+├── rules/                         ← Rules por ruta de ejemplo/base por dominio
+├── skills/                        ← Skills canónicas de MAGIA
+├── agents/                        ← subagentes (planner, reviewer, security, fixer, documenter, evaluator)
+├── commands/                      ← comandos /magia-* (incluye /magia-instalar)
+└── templates/                     ← plantillas instalables (MAGIA.md, config, settings, CI, evals…)
 ```
+
+`docs/referencia-spec/` guarda el paquete de handoff como diseño objetivo
+(ver su `LEEME-ESTADO.md`); no es configuración vigente.
 
 Cada repo de producto que adopte MAGIA copia (no enlaza en vivo)
 `claude-md/base.md` → su propio `CLAUDE.md`, y las Skills/Rules que le
@@ -42,8 +49,11 @@ repo-producto-B/.claude/   ← puede seguir en v1.0.0 hasta que decida actualiza
 
 ## Proceso de cambio
 
-1. Todo cambio a `docs/`, `claude-md/`, `rules/` o `skills/` va por Pull
-   Request — nunca commit directo a `main`.
+1. Todo cambio a `docs/`, `claude-md/`, `core/`, `rules/`, `skills/`,
+   `agents/`, `commands/` o `templates/` va por Pull Request — nunca commit
+   directo a `main`. Un cambio al `core/` se trata como cambio a una API
+   pública: **endurecer** una Regla o un umbral es MINOR; **relajarlo** es
+   MAJOR y exige consenso explícito del comité.
 2. El comité de gobernanza (ver `docs/00-plan-metodologico-4D.md`, sección
    de roles) revisa y aprueba.
 3. Al mergear, se actualiza `CHANGELOG.md` y `VERSION`, y se crea un
@@ -68,6 +78,12 @@ Cada Skill y cada Rule debe tener un responsable humano nombrado (no solo
 |---|---|
 | `skills/elegir-patron-ia/SKILL.md` | José Alonso |
 | `rules/example-ai-features.md` | José Alonso |
+| `core/` (Constitución, Reglas R1–R9, hooks, scripts) | José Alonso *(provisional, a confirmar por el comité)* |
+| `skills/magia-*` (context, verify, evals, data-shield, grounding, red-team, diligencia) | José Alonso *(provisional)* |
+| `agents/`, `commands/` | José Alonso *(provisional)* |
+
+La asignación provisional se debe a que el comité aún no reparte los
+artefactos nuevos; se confirma por consenso al aprobar v0.3.0.
 
 Comité de gobernanza (aprobación de cambios por consenso): José Alonso, Pablo
 Breganza, Josué Gamarro — ver `docs/01-plan-tecnico-fase1.md`, sección de

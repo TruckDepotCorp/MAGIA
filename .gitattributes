@@ -1,0 +1,5 @@
+# Los scripts y el Core de MAGIA deben conservar LF: con core.autocrlf=true en
+# Windows, un .sh con CRLF falla en bash y los hashes de magia.lock cambian.
+*.sh text eol=lf
+core/** text eol=lf
+.magia/core/** text eol=lf

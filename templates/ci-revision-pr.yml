@@ -1,0 +1,50 @@
+# Revisión automática de PRs con Claude (complementa a magia-gate; NO lo reemplaza).
+# Copiar a .github/workflows/magia-revision-pr.yml. Opcional: no marcar como check requerido.
+#
+# Sintaxis verificada contra la documentación oficial (code.claude.com/docs/en/github-actions,
+# anthropics/claude-code-action @v1) el 2026-10-05. Lo marcado [VERIFICAR] no se pudo confirmar.
+# Anthropic es proveedor aprobado (core/proveedores-aprobados.txt). La llave NUNCA va en el repo:
+# secret ANTHROPIC_API_KEY cargado desde el vault corporativo (R6) [por definir: vault].
+# Aviso de datos: el diff del PR se envía a la API; en repos con riesgo Alto, confirmar con el
+# comité que ese flujo es aceptable antes de activarlo (Constitución §3, R2).
+
+name: magia-revision-pr
+
+on:
+  pull_request:
+    types: [opened, synchronize, ready_for_review, reopened]
+
+jobs:
+  revision:
+    # Solo PRs del mismo repo: GitHub no entrega secretos a forks y no queremos
+    # ejecutar contenido no confiable con credenciales (no hay input propio del action para esto).
+    if: github.event.pull_request.head.repo.full_name == github.repository && github.event.pull_request.draft == false
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+      issues: read
+      id-token: write   # requerido por la autenticación de la GitHub App del action
+    steps:
+      - uses: actions/checkout@v6   # [VERIFICAR] versión de checkout vigente en el repo
+        with:
+          fetch-depth: 1
+      - uses: anthropics/claude-code-action@v1
+        with:
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          # --max-turns acota costo; solo herramienta de comentarios en línea (el action lee CLAUDE.md del checkout).
+          claude_args: |
+            --max-turns 8
+            --allowedTools "mcp__github_inline_comment__create_inline_comment,Read,Glob,Grep"
+          prompt: |
+            Eres un revisor independiente. Lee CLAUDE.md, MAGIA.md, .magia/core/CONSTITUCION.md y
+            .magia/core/REGLAS-CORE.md. Revisa el diff de este PR y comenta en línea solo hallazgos
+            reales, citando la Regla (R1-R9), el archivo y la corrección exacta:
+            - secretos o datos personales en código, fixtures, logs o prompts (R2, R6)
+            - modelos o proveedores fuera de .magia/core/proveedores-aprobados.txt (R3)
+            - cambios en rutas críticas de MAGIA.md (pedir revisión humana línea por línea)
+            - cambios que debiliten un hook, permissions.deny o el Core (R8)
+            - código generado por IA: contrato, casos borde, errores, dependencias nuevas,
+              pruebas que no prueban nada
+            Si no hay hallazgos, di "Sin hallazgos bloqueantes". No apruebes ni hagas merge: la
+            aprobación es humana. Español, directo, sin emoji.

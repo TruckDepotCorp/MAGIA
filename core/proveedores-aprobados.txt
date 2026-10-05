@@ -1,0 +1,8 @@
+# Proveedores/herramientas de IA aprobados por el comité (2026-08-04).
+# Un id por línea, en minúsculas. Lo lee .magia/core/scripts/check.sh (Regla R3).
+# Fuente: CONTEXTO-PARA-CLAUDE-CODE.md §6 y claude-md/base.md.
+# Agregar o quitar un proveedor es una decisión del comité (PR a este repo).
+anthropic
+xai
+openai
+cursor
